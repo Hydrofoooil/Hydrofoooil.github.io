@@ -1,0 +1,147 @@
+{
+ "recon": [
+  {
+   "id": "android_figure_panda",
+   "title": "Toy figure",
+   "json": "recon/android_figure_panda.json",
+   "image": "recon/android_figure_panda.jpg"
+  },
+  {
+   "id": "apples_to_apples_kids_edition",
+   "title": "Card-game box",
+   "json": "recon/apples_to_apples_kids_edition.json",
+   "image": "recon/apples_to_apples_kids_edition.jpg"
+  },
+  {
+   "id": "cole_hardware_school_bell_solid_brass_38",
+   "title": "Brass bell",
+   "json": "recon/cole_hardware_school_bell_solid_brass_38.json",
+   "image": "recon/cole_hardware_school_bell_solid_brass_38.jpg"
+  },
+  {
+   "id": "aroma_stainless_steel_milk_frother_2_cup",
+   "title": "Milk frother",
+   "json": "recon/aroma_stainless_steel_milk_frother_2_cup.json",
+   "image": "recon/aroma_stainless_steel_milk_frother_2_cup.jpg"
+  },
+  {
+   "id": "big_o_sponges_assorted_cellulose_12_pack",
+   "title": "Sponge pack",
+   "json": "recon/big_o_sponges_assorted_cellulose_12_pack.json",
+   "image": "recon/big_o_sponges_assorted_cellulose_12_pack.jpg"
+  },
+  {
+   "id": "beyonc_life_is_but_a_dream_dvd",
+   "title": "DVD case",
+   "json": "recon/beyonc_life_is_but_a_dream_dvd.json",
+   "image": "recon/beyonc_life_is_but_a_dream_dvd.jpg"
+  },
+  {
+   "id": "brother_lc_1053pks_ink_cartridge_cyanmagentayellow_1pack",
+   "title": "Ink cartridge",
+   "json": "recon/brother_lc_1053pks_ink_cartridge_cyanmagentayellow_1pack.json",
+   "image": "recon/brother_lc_1053pks_ink_cartridge_cyanmagentayellow_1pack.jpg"
+  },
+  {
+   "id": "canon_225226_ink_cartridges_blackcolor_cyan_magenta_yellow_6_count",
+   "title": "Ink cartridges",
+   "json": "recon/canon_225226_ink_cartridges_blackcolor_cyan_magenta_yellow_6_count.json",
+   "image": "recon/canon_225226_ink_cartridges_blackcolor_cyan_magenta_yellow_6_count.jpg"
+  },
+  {
+   "id": "2_of_jenga_classic_game",
+   "title": "Jenga blocks",
+   "json": "recon/2_of_jenga_classic_game.json",
+   "image": "recon/2_of_jenga_classic_game.jpg"
+  },
+  {
+   "id": "canon_pixma_ink_cartridge_8",
+   "title": "Ink cartridge box",
+   "json": "recon/canon_pixma_ink_cartridge_8.json",
+   "image": "recon/canon_pixma_ink_cartridge_8.jpg"
+  },
+  {
+   "id": "paint_maker",
+   "title": "Paint kit",
+   "json": "recon/paint_maker.json",
+   "image": "recon/paint_maker.jpg"
+  },
+  {
+   "id": "kitchenware_now_designs_bowl_akita_black",
+   "title": "Black bowl",
+   "json": "recon/kitchenware_now_designs_bowl_akita_black.json",
+   "image": "recon/kitchenware_now_designs_bowl_akita_black.jpg"
+  },
+  {
+   "id": "stuffed_toys_lovable_huggable_cuddly_boutique_teddy_bear_beige",
+   "title": "Teddy bear",
+   "json": "recon/stuffed_toys_lovable_huggable_cuddly_boutique_teddy_bear_beige.json",
+   "image": "recon/stuffed_toys_lovable_huggable_cuddly_boutique_teddy_bear_beige.jpg"
+  }
+ ],
+ "retarget": [
+  {
+   "id": "d3_tc_stir_spatula_bowl_20231024__71",
+   "title": "Stir with a spatula",
+   "dataset": "TACO",
+   "json": "retarget/d3_tc_stir_spatula_bowl_20231024__71.json",
+   "image": "retarget/d3_tc_stir_spatula_bowl_20231024__71.jpg"
+  },
+  {
+   "id": "05_oi_wipe_plate_sponge_22db0324_3868",
+   "title": "Wipe a plate",
+   "dataset": "OakInk2",
+   "json": "retarget/05_oi_wipe_plate_sponge_22db0324_3868.json",
+   "image": "retarget/05_oi_wipe_plate_sponge_22db0324_3868.jpg"
+  },
+  {
+   "id": "d1_ar_ketchup_use_02_s02_388",
+   "title": "Use a ketchup bottle",
+   "dataset": "ARCTIC",
+   "json": "retarget/d1_ar_ketchup_use_02_s02_388.json",
+   "image": "retarget/d1_ar_ketchup_use_02_s02_388.jpg"
+  },
+  {
+   "id": "04_tc_pour_in_some_kettle_plate_2_94",
+   "title": "Pour from a kettle",
+   "dataset": "TACO",
+   "json": "retarget/04_tc_pour_in_some_kettle_plate_2_94.json",
+   "image": "retarget/04_tc_pour_in_some_kettle_plate_2_94.jpg"
+  },
+  {
+   "id": "d2_oi_cap_porcelain_bottle_49a830_1612",
+   "title": "Cap a porcelain bottle",
+   "dataset": "OakInk2",
+   "json": "retarget/d2_oi_cap_porcelain_bottle_49a830_1612.json",
+   "image": "retarget/d2_oi_cap_porcelain_bottle_49a830_1612.jpg"
+  },
+  {
+   "id": "06_tc_put_in_spoon_pan_20231015_1_10",
+   "title": "Put a spoon in a pan",
+   "dataset": "TACO",
+   "json": "retarget/06_tc_put_in_spoon_pan_20231015_1_10.json",
+   "image": "retarget/06_tc_put_in_spoon_pan_20231015_1_10.jpg"
+  },
+  {
+   "id": "08_ar_waffleiron_use_04_s06_374",
+   "title": "Grasp a waffle-iron edge",
+   "dataset": "ARCTIC",
+   "json": "retarget/08_ar_waffleiron_use_04_s06_374.json",
+   "image": "retarget/08_ar_waffleiron_use_04_s06_374.jpg"
+  },
+  {
+   "id": "07_oi_put_off_alcohol_burner_cap__1664",
+   "title": "Cap an alcohol burner",
+   "dataset": "OakInk2",
+   "json": "retarget/07_oi_put_off_alcohol_burner_cap__1664.json",
+   "image": "retarget/07_oi_put_off_alcohol_burner_cap__1664.jpg"
+  },
+  {
+   "id": "d7_tc_measure_ruler_plate_2023110_69",
+   "title": "Measure a plate with a ruler",
+   "dataset": "TACO",
+   "json": "retarget/d7_tc_measure_ruler_plate_2023110_69.json",
+   "image": "retarget/d7_tc_measure_ruler_plate_2023110_69.jpg"
+  }
+ ]
+}

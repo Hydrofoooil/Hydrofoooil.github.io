@@ -1,0 +1,86 @@
+[
+ {
+  "slug": "insertion",
+  "label": "Insertion",
+  "human": {
+   "duration": 5.43,
+   "bytes": 167164
+  },
+  "robot": {
+   "duration": 15.23,
+   "bytes": 782674
+  }
+ },
+ {
+  "slug": "stacking",
+  "label": "Stacking",
+  "human": {
+   "duration": 7.83,
+   "bytes": 322233
+  },
+  "robot": {
+   "duration": 22.2,
+   "bytes": 1198352
+  }
+ },
+ {
+  "slug": "pouring_mug",
+  "label": "Pouring (mug)",
+  "human": {
+   "duration": 6.0,
+   "bytes": 184666
+  },
+  "robot": {
+   "duration": 9.33,
+   "bytes": 522223
+  }
+ },
+ {
+  "slug": "scanning",
+  "label": "Scanning",
+  "human": {
+   "duration": 5.3,
+   "bytes": 300363
+  },
+  "robot": {
+   "duration": 11.87,
+   "bytes": 851677
+  }
+ },
+ {
+  "slug": "scrubbing",
+  "label": "Scrubbing",
+  "human": {
+   "duration": 6.43,
+   "bytes": 265996
+  },
+  "robot": {
+   "duration": 13.63,
+   "bytes": 999744
+  }
+ },
+ {
+  "slug": "sweeping",
+  "label": "Sweeping",
+  "human": {
+   "duration": 13.23,
+   "bytes": 546951
+  },
+  "robot": {
+   "duration": 17.8,
+   "bytes": 1128186
+  }
+ },
+ {
+  "slug": "pouring_cup",
+  "label": "Pouring (cup)",
+  "human": {
+   "duration": 5.33,
+   "bytes": 219289
+  },
+  "robot": {
+   "duration": 10.7,
+   "bytes": 654370
+  }
+ }
+]

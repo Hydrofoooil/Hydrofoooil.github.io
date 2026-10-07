@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OmniHOI: Dexterous Hand-Object Interaction from Monocular Human Video</title>
+  <meta name="description" content="OmniHOI turns a monocular RGB video of hand-object interaction into an interaction-faithful trajectory on dexterous robot hands.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="OmniHOI: Dexterous Hand-Object Interaction from Monocular Human Video">
+  <meta property="og:description" content="From one monocular human video to dexterous robot hands: physically consistent reconstruction, contact-aware retargeting and physics-in-the-loop refinement.">
+  <meta property="og:image" content="static/img/social.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="static/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="static/css/fonts.css">
+  <link rel="stylesheet" href="static/css/common.css">
+  <link rel="stylesheet" href="static/css/classic.css">
+  <link rel="stylesheet" href="static/css/hero.css">
+  <meta name="theme-color" content="#f7f9fc">
+  <!-- Link targets; leave a value null to show the button as "soon". -->
+  <script id="page-links" type="application/json">{"paper": null, "arxiv": null, "code": null}</script>
+</head>
+<body>
+
+<header class="hm-nav" data-nav="#top">
+  <div class="wrap-wide">
+    <nav class="hm-navlinks" aria-label="Sections">
+      <a href="#abstract">Abstract</a><a href="#method">Method</a><a href="#bibtex">BibTeX</a>
+    </nav>
+  </div>
+</header>
+
+<section id="top" class="hm">
+  <div class="wrap-wide">
+    <div class="hm-top">
+      <div>
+        <h1>Omni<i>HOI</i></h1>
+        <p class="hm-sub">Dexterous Hand-Object Interaction from Monocular Human Video</p>
+      </div>
+      <div class="hm-meta">
+        <ul class="hm-authors">
+          <li>Ting Mao<sup>1</sup></li><li>Yanming Shao<sup>2</sup></li><li>Ziheng Wang<sup>3</sup></li><li>Haoyu Liu<sup>1</sup></li>
+          <li>Yiqun Wang<sup>4</sup></li><li>Xuanye Wu<sup>4</sup></li><li>Yao Mu<sup>3,4,†</sup></li>
+        </ul>
+        <ul class="hm-affils">
+          <li><sup>1</sup>Zhejiang University</li><li><sup>2</sup>The University of Hong Kong</li>
+          <li><sup>3</sup>Shanghai Jiao Tong University</li><li><sup>4</sup>Shanghai AI Laboratory</li>
+        </ul>
+        <p class="hm-corr"><sup>†</sup>Corresponding author</p>
+        <nav class="hm-links" aria-label="Paper links">
+          <a class="hm-btn solid" data-link="paper"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg> Paper <span class="soon">soon</span></a>
+          <a class="hm-btn" data-link="arxiv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 5.5c3-1.2 6-1 9.5 1 3.5-2 6.5-2.2 9.5-1v13c-3-1.2-6-1-9.5 1-3.5-2-6.5-2.2-9.5-1z"/><path d="M12 6.5v13"/></svg> arXiv <span class="soon">soon</span></a>
+          <a class="hm-btn" data-link="code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m8.5 7-5 5 5 5M15.5 7l5 5-5 5"/></svg> Code <span class="soon">soon</span></a>
+          <a class="hm-btn" href="#bibtex">BibTeX</a>
+        </nav>
+      </div>
+    </div>
+    <div class="hm-player" data-pair-player="static/video/real/clips.json"></div>
+  </div>
+</section>
+
+<main>
+<section id="abstract" class="wrap">
+  <h2 class="h2">Abstract</h2>
+  <div class="abstract narrow">
+    <p>
+      Monocular videos of human manipulation provide abundant dexterous demonstrations, yet reconstructing hand-object interaction
+      from a single view and transferring it to robot hands remain difficult, limiting their direct use for robot execution.
+      Prior methods either require task-specific RL training, limiting scalability, or assume clean motion-capture trajectories
+      and thus cannot operate directly on video.
+      We present OmniHOI, a pipeline that turns an RGB video of hand-object interaction into an interaction-faithful trajectory on dexterous hands.
+      The key idea is to enforce physical consistency using the evidence available at each stage: image evidence during reconstruction,
+      contact geometry during retargeting, and dynamics during physics-in-the-loop refinement.
+      Each stage optimizes the corresponding representation directly, correcting errors before they propagate downstream
+      or must be absorbed by a learned policy.
+      Its trajectories also execute on a real bimanual robot across diverse tasks.
+    </p>
+  </div>
+</section>
+
+<section id="method">
+  <div class="wrap">
+    <h2 class="h2">Method</h2>
+  </div>
+  <figure class="fig fig-center wrap-wide method-fig">
+    <img src="static/img/pipeline.webp" width="2400" height="888" alt="OmniHOI pipeline: adaptive keyframe sampling, keyframe reconstruction and contact-aware retargeting, then physics-in-the-loop refinement with CMA-ES in MuJoCo." loading="lazy">
+    <figcaption>
+      <b>Overview.</b> Adaptive sampling reduces the video clip to keyframes (left). The hand pose in each keyframe is
+      reconstructed, refined and retargeted with contact information preserved (middle). Interpolating between keyframes
+      gives an initial robot trajectory, which physics-in-the-loop refinement rolls out in simulation and corrects with CMA-ES (right).
+    </figcaption>
+  </figure>
+
+  <div class="method-stage method-stage-1" role="group" aria-labelledby="method-stage-1-label">
+    <div class="wrap">
+      <div class="method-stage-label" id="method-stage-1-label">Stage 1 · Keyframe reconstruction</div>
+    <div class="feature flip">
+      <figure class="fig">
+        <img src="static/img/keyframes.webp" width="1255" height="727" alt="Accumulated motion signal with keyframes at equal increments, compared with uniform sampling." loading="lazy">
+      </figure>
+      <div>
+        <h3 class="h3">Adaptive keyframe sampling</h3>
+        <p>Refining every frame is costly and mostly fits jitter. OmniHOI accumulates the second-order motion of the wrist and
+          the finger joints, and places keyframes at equal increments of this signal: they crowd at reversals and transients
+          and thin out on steady stretches. The frames in between are interpolated.</p>
+      </div>
+    </div>
+
+  <div class="result" id="reconstruction">
+    <div class="result-head">
+      <h3 class="h3">Hand-object reconstruction</h3>
+      <p class="lead">SAM&nbsp;3 segments hands, objects and table; MoGe-3 estimates intrinsics and per-frame point maps. WiLoR hands are
+          placed by pixel-aligned hand–scene correspondences, and SAM&nbsp;3D and FoundationPose give each object. Every keyframe
+          is refined by alternating image alignment and contact–penetration optimization.</p>
+    </div>
+    <div class="card">
+      <div data-recon="static/scenes/index.json"></div>
+    </div>
+  </div>
+    </div>
+  </div>
+
+  <div class="method-stage method-stage-2" role="group" aria-labelledby="method-stage-2-label">
+    <div class="wrap">
+      <div class="method-stage-label" id="method-stage-2-label">Stage 2 · Human2robot transfer</div>
+  <div class="result" id="transfer">
+    <div class="result-head">
+      <h3 class="h3">Contact-aware retargeting</h3>
+      <p class="lead">A keypoint-vector solver keeps the finger arrangement, but morphology differences cause contact loss and penetration.
+          Each contacting finger gets a contact region and surface anchors; the smallest pose change first removes link
+          crossings, then penetration, while pulling the anchors to the demonstrated contact.</p>
+    </div>
+  <figure class="fig fig-center transfer-method-fig">
+    <img src="static/img/contact_retargeting.webp" width="2400" height="761" alt="SDF gradients on a crossing finger, contact anchors and band, and MANO versus robot hand before and after repair." loading="lazy">
+    <figcaption>
+      <b>Left:</b> SDF gradients on a finger link that crosses a thin object cancel out, while the repair pushes the finger out along
+      the bone chain. <b>Middle:</b> contact anchors on the robot surface and the contact band they must reach.
+      <b>Right:</b> ground-truth MANO hand, kinematic retargeting (before) and the result after repair.
+    </figcaption>
+  </figure>
+    <div class="card">
+      <div data-retarget="static/scenes/index.json"></div>
+    </div>
+  </div>
+
+  <div class="result" id="physics">
+    <div class="result-head">
+      <h3 class="h3">Physics-in-the-loop refinement</h3>
+      <p class="lead">Keyframes are interpolated into a 60&nbsp;Hz trajectory and replayed in MuJoCo. CMA-ES searches per-keyframe offsets in a
+          rolling horizon, scoring each rollout by object tracking, contact, antagonistic grasp force, penetration and the
+          state at the end of the window.</p>
+    </div>
+    <div class="card">
+      <div data-transfer-videos="static/video/transfer/index.json"></div>
+    </div>
+  </div>
+    </div>
+  </div>
+
+  <div class="wrap real-world-section">
+  <div class="result" id="real-world">
+    <div class="result-head">
+      <h3 class="h3">Real-world deployment</h3>
+    </div>
+<figure class="teaser">
+  <div class="teaser-frame">
+    <video data-autoplay muted loop playsinline preload="auto" poster="static/video/teaser_wall.jpg" aria-label="Seven human demonstrations and their robot executions">
+      <source src="static/video/teaser_wall.mp4" type="video/mp4">
+    </video>
+    <div class="teaser-rows" aria-hidden="true"><span>Human video</span><span>Robot</span></div>
+  </div>
+  <div class="teaser-labels" aria-hidden="true">
+    <span>Insertion</span><span>Stacking</span><span>Pouring (mug)</span><span>Scanning</span><span>Scrubbing</span><span>Sweeping</span><span>Pouring (cup)</span>
+  </div>
+</figure>
+  </div>
+  </div>
+</section>
+
+<section id="bibtex" class="wrap">
+  <h2 class="h2">BibTeX</h2>
+  <div class="bib narrow">
+    <button class="copy" type="button" data-copy="#bibtex-text">Copy</button>
+<pre id="bibtex-text">@article{mao2026omnihoi,
+  title   = {OmniHOI: Dexterous Hand-Object Interaction from Monocular Human Video},
+  author  = {Mao, Ting and Shao, Yanming and Wang, Ziheng and Liu, Haoyu and
+             Wang, Yiqun and Wu, Xuanye and Mu, Yao},
+  journal = {arXiv preprint},
+  year    = {2026}
+}</pre>
+  </div>
+</section>
+</main>
+
+<footer class="wrap">
+  <p>Interactive 3D rendered with three.js. Figures are from the paper.</p>
+</footer>
+
+<script src="static/js/three.min.js" defer></script>
+<script src="static/js/hoiview.js" defer></script>
+<script src="static/js/site.js" defer></script>
+</body>
+</html>

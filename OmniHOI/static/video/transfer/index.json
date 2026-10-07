@@ -1,0 +1,142 @@
+{
+  "defaultHand": "sharpa_wave",
+  "hands": [
+    {
+      "id": "sharpa_wave",
+      "label": "SharpaWave"
+    },
+    {
+      "id": "shadow",
+      "label": "Shadow Hand"
+    },
+    {
+      "id": "wuji",
+      "label": "Wuji Hand"
+    },
+    {
+      "id": "xhand",
+      "label": "XHand"
+    },
+    {
+      "id": "inspire",
+      "label": "Inspire Hand"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "oakink2_put_flower_vase_e965dd3f_inhand",
+      "title": "Put the flower into the vase",
+      "dataset": "OakInk2"
+    },
+    {
+      "id": "taco_stir_spoon_pan_20231015_165_inhand",
+      "title": "Stir in the pan with the spoon",
+      "dataset": "TACO"
+    },
+    {
+      "id": "taco_stir_fry_spoon_pan_20230927_011_inhand",
+      "title": "Stir-fry the pan with the spoon",
+      "dataset": "TACO"
+    },
+    {
+      "id": "taco_put_in_bowl_pan_20230929_019_inhand",
+      "title": "Put in with the bowl into the pan",
+      "dataset": "TACO"
+    },
+    {
+      "id": "taco_pour_in_some_kettle_plate_20231031_075_inhand",
+      "title": "Pour some from the kettle into the plate",
+      "dataset": "TACO"
+    },
+    {
+      "id": "taco_pour_in_some_box_plate_20231027_162_inhand",
+      "title": "Pour some from the box into the plate",
+      "dataset": "TACO"
+    },
+    {
+      "id": "taco_measure_ruler_plate_20231104_079_inhand",
+      "title": "Measure the plate with the ruler",
+      "dataset": "TACO"
+    },
+    {
+      "id": "oakink2_shake_experiment_substances_test_tube_a3a31b06_inhand",
+      "title": "Shake experiment substances in the test tube",
+      "dataset": "OakInk2"
+    },
+    {
+      "id": "oakink2_pour_orange_mug_bowl_9d4bff43_inhand",
+      "title": "Pour the content from the orange mug to the bowl",
+      "dataset": "OakInk2"
+    },
+    {
+      "id": "oakink2_place_asbestos_mesh_onto_tripod_963fdcad_inhand",
+      "title": "Place asbestos mesh onto the tripod",
+      "dataset": "OakInk2"
+    },
+    {
+      "id": "oakink2_heat_experiment_substances_beaker_alcohol_c3c69f0f_inhand",
+      "title": "Heat experiment substances in the beaker with alcohol lamp",
+      "dataset": "OakInk2"
+    },
+    {
+      "id": "oakink2_pour_milk_large_white_bottle_cd0aeb52_inhand",
+      "title": "Pour the milk from the large white bottle to the blue cup",
+      "dataset": "OakInk2"
+    },
+    {
+      "id": "oakink2_pour_yellow_mug_plate_e9343c38_inhand",
+      "title": "Pour the content from the yellow mug to the plate",
+      "dataset": "OakInk2"
+    },
+    {
+      "id": "oakink2_put_off_alcohol_burner_cap_606948d0_inhand",
+      "title": "Put off the alcohol burner with its cap",
+      "dataset": "OakInk2"
+    },
+    {
+      "id": "oakink2_shake_experiment_substance_conical_flask_39e5ee70_inhand",
+      "title": "Shake the experiment substance a in the conical flask",
+      "dataset": "OakInk2"
+    },
+    {
+      "id": "oakink2_stir_yellow_mug_rod_765b120e_inhand",
+      "title": "Stir in the yellow mug with the rod",
+      "dataset": "OakInk2"
+    },
+    {
+      "id": "oakink2_wipe_plate_sponge_22db0324_inhand",
+      "title": "Wipe the plate with the sponge",
+      "dataset": "OakInk2"
+    },
+    {
+      "id": "taco_brush_brush_plate_20230927_025_inhand",
+      "title": "Brush the plate with the brush",
+      "dataset": "TACO"
+    },
+    {
+      "id": "taco_brush_roller_plate_20230928_043_inhand",
+      "title": "Brush the plate with the roller",
+      "dataset": "TACO"
+    },
+    {
+      "id": "taco_dust_brush_bowl_20231103_184_inhand",
+      "title": "Dust the bowl with the brush",
+      "dataset": "TACO"
+    },
+    {
+      "id": "taco_dust_brush_box_20230927_030_inhand",
+      "title": "Dust the box with the brush",
+      "dataset": "TACO"
+    },
+    {
+      "id": "taco_empty_bowl_cup_20230929_032_inhand",
+      "title": "Empty the cup with the bowl",
+      "dataset": "TACO"
+    },
+    {
+      "id": "taco_empty_bowl_cup_20231006_266_inhand",
+      "title": "Empty the bowl into the cup",
+      "dataset": "TACO"
+    }
+  ]
+}

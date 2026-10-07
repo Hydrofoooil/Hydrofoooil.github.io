@@ -1,0 +1,53 @@
+:root {
+  color-scheme: light;
+  font-family: Inter, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  color: #25352b;
+  background: #fafbf8;
+}
+* { box-sizing: border-box; }
+body { margin: 0; }
+a { color: inherit; text-decoration: none; }
+a:focus-visible { outline: 2px solid #6f8b59; outline-offset: 6px; }
+.site-header {
+  max-width: 1280px;
+  margin: auto;
+  padding: 30px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.wordmark { font-size: 21px; font-weight: 650; letter-spacing: -.7px; }
+.wordmark span { color: #809869; }
+.github-link { font-size: 14px; color: #657264; }
+.github-link:hover { color: #25352b; }
+.github-link span { margin-left: 5px; }
+main { max-width: 1280px; margin: auto; padding: 26px 32px 0; }
+.intro { text-align: center; }
+.eyebrow { font-size: 10px; font-weight: 600; letter-spacing: 3px; color: #829178; margin: 0 0 17px; }
+h1 { font-size: clamp(25px, 3vw, 38px); font-weight: 550; letter-spacing: -1px; margin: 0; }
+.welcome { color: #808979; font-size: 14px; margin: 14px 0 0; }
+.portrait { margin: 24px auto 0; max-width: 1120px; }
+.splash-photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 8 / 5;
+  object-fit: cover;
+  object-position: center;
+  -webkit-mask-image: url("assets/splash-mask.svg");
+  mask-image: url("assets/splash-mask.svg");
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  mask-mode: alpha;
+}
+footer { text-align: center; color: #93998c; font-size: 11px; padding: 24px 20px 30px; letter-spacing: .5px; }
+footer span { margin: 0 8px; }
+@media (max-width: 600px) {
+  .site-header { padding: 24px; }
+  main { padding: 30px 8px 0; }
+  .wordmark { font-size: 19px; }
+  .portrait { margin-top: 32px; }
+  footer { padding-top: 35px; }
+}

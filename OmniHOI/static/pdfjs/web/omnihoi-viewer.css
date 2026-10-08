@@ -1,0 +1,9 @@
+:root { color-scheme: light; }
+#toolbarContainer, #toolbarViewer { background: #eef4fc; }
+#editorModeButtons, #editorModeSeparator { display: none; }
+.omnihoi-home {
+  color: #2a63cb; text-decoration: none; font: 700 15px/1 system-ui, sans-serif;
+  padding: 8px 12px; align-self: center; white-space: nowrap;
+}
+.omnihoi-home:hover, .omnihoi-home:focus-visible { text-decoration: underline; }
+@media (max-width: 600px) { .omnihoi-home { font-size: 12px; padding: 8px 6px; } }

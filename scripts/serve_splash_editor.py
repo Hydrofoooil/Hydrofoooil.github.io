@@ -272,7 +272,7 @@ class Handler(BaseHTTPRequestHandler):
         if path.startswith('/homepage/'):
             relative = path.removeprefix('/homepage').lstrip('/') or 'index.html'
             file = (ROOT / relative).resolve()
-            allowed = relative in ('index.html', 'styles.css', 'ZJUSRA_LOGO.jpg') or (
+            allowed = relative in ('index.html', 'styles.css', 'favicon.ico', 'ZJUSRA_LOGO.jpg') or (
                 relative.startswith('assets/') and file.is_relative_to((ROOT / 'assets').resolve()))
             if allowed and file.is_file():
                 data = file.read_bytes()

@@ -1,0 +1,206 @@
+{
+  "fonts": [
+    {
+      "id": "sans",
+      "label": "现代无衬线 · Sans",
+      "css": "Inter, system-ui, -apple-system, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif",
+      "group": "其他字体"
+    },
+    {
+      "id": "arial",
+      "label": "Arial / 黑体",
+      "css": "Arial, \"Microsoft YaHei\", \"Noto Sans SC\", sans-serif",
+      "group": "其他字体"
+    },
+    {
+      "id": "georgia",
+      "label": "Georgia · 衬线",
+      "css": "Georgia, \"Noto Serif SC\", \"Songti SC\", SimSun, serif",
+      "group": "英文衬线"
+    },
+    {
+      "id": "times",
+      "label": "Times New Roman / 宋体",
+      "css": "\"Times New Roman\", \"Songti SC\", SimSun, serif",
+      "group": "英文衬线"
+    },
+    {
+      "id": "eb-garamond",
+      "label": "EB Garamond · 古典书卷",
+      "css": "\"TM Garamond\", Georgia, serif",
+      "group": "英文衬线"
+    },
+    {
+      "id": "pagella",
+      "label": "TeX Gyre Pagella · 书法衬线",
+      "css": "\"TM Pagella\", Georgia, serif",
+      "group": "英文衬线"
+    },
+    {
+      "id": "termes",
+      "label": "TeX Gyre Termes · 报刊衬线",
+      "css": "\"TM Termes\", Georgia, serif",
+      "group": "英文衬线"
+    },
+    {
+      "id": "schola",
+      "label": "TeX Gyre Schola · 教科书衬线",
+      "css": "\"TM Schola\", Georgia, serif",
+      "group": "英文衬线"
+    },
+    {
+      "id": "bonum",
+      "label": "TeX Gyre Bonum · 圆润衬线",
+      "css": "\"TM Bonum\", Georgia, serif",
+      "group": "英文衬线"
+    },
+    {
+      "id": "noto-serif",
+      "label": "Noto Serif · 通用衬线",
+      "css": "\"TM Noto Serif\", Georgia, serif",
+      "group": "英文衬线"
+    },
+    {
+      "id": "liberation-serif",
+      "label": "Liberation Serif · 经典衬线",
+      "css": "\"TM Classic Serif\", Georgia, serif",
+      "group": "英文衬线"
+    },
+    {
+      "id": "dejavu-serif",
+      "label": "DejaVu Serif · 宽阔衬线",
+      "css": "\"TM DejaVu Serif\", Georgia, serif",
+      "group": "英文衬线"
+    },
+    {
+      "id": "kai",
+      "label": "楷体 · Kai",
+      "css": "KaiTi, STKaiti, \"Kaiti SC\", \"Noto Serif SC\", serif",
+      "group": "中文字体"
+    },
+    {
+      "id": "mono",
+      "label": "等宽 · Monospace",
+      "css": "\"SFMono-Regular\", Consolas, \"Liberation Mono\", monospace",
+      "group": "其他字体"
+    },
+    {
+      "id": "stzhongsong",
+      "label": "华文中宋",
+      "css": "\"TM STZhongsong\", STZhongsong, \"华文中宋\", \"Songti SC\", SimSun, serif",
+      "group": "中文字体"
+    }
+  ],
+  "limits": {
+    "size": [
+      10,
+      160
+    ],
+    "weight": [
+      100,
+      900
+    ],
+    "tracking": [
+      -5,
+      20
+    ],
+    "x": [
+      0,
+      100
+    ],
+    "y": [
+      0,
+      100
+    ]
+  },
+  "default": {
+    "english": {
+      "text": "Ting Mao",
+      "font": "sans",
+      "size": 34,
+      "weight": 600,
+      "color": "#25352b",
+      "tracking": -0.7,
+      "x": 3.333,
+      "y": 2.4
+    },
+    "chinese": {
+      "text": "毛挺",
+      "font": "stzhongsong",
+      "size": 20,
+      "weight": 400,
+      "color": "#25352b",
+      "tracking": 2.4,
+      "x": 3.333,
+      "y": 7.6
+    },
+    "links": {
+      "style": "outline",
+      "font": "sans",
+      "size": 14,
+      "gap": 10,
+      "color": "#25352b",
+      "followName": true,
+      "offset": 26,
+      "x": 3.333,
+      "y": 15,
+      "destinations": {
+        "email": "tingmao0922@gmail.com",
+        "scholar": "",
+        "github": "https://github.com/Hydrofoooil",
+        "wechat": "",
+        "cv": ""
+      },
+      "wechatQr": "assets/wechat-qr.jpg"
+    }
+  },
+  "linkItems": [
+    {
+      "id": "email",
+      "label": "Email",
+      "icon": "<rect x=\"3\" y=\"5\" width=\"18\" height=\"14\" rx=\"2\"/><path d=\"m3 6 9 7 9-7\"/>"
+    },
+    {
+      "id": "scholar",
+      "label": "Google Scholar",
+      "icon": "<path d=\"m2 9 10-5 10 5-10 5-10-5Zm4 3v5c4 3 8 3 12 0v-5M22 9v7\"/>"
+    },
+    {
+      "id": "github",
+      "label": "GitHub",
+      "icon": "<path d=\"M9 19c-4 1-4-2-6-2m12 5v-4c0-1 .1-2-1-3 3-.3 6-1.5 6-5 0-1.3-.4-2.5-1.2-3.5.1-1 .1-2-.2-3-1.6 0-2.8.8-3.6 1.3a12 12 0 0 0-6 0C7.8 4 6.6 3.5 5 3.5c-.3 1-.3 2-.2 3A5.5 5.5 0 0 0 3.5 10c0 3.5 3 4.7 6 5-.8.8-1 1.5-1 3v4\"/>"
+    },
+    {
+      "id": "wechat",
+      "label": "WeChat",
+      "icon": "<path d=\"M13 14c-1 .5-2 .7-3 .7l-3-.3-3 2 .6-3C3 12.3 2 10.6 2 8.8 2 5.6 5.6 3 10 3s8 2.6 8 5.8\"/><path d=\"M15 10c4 0 7 2.2 7 5 0 1.6-.9 3-2.5 4l.5 2.5-2.5-1.8-2.5.3c-4 0-7-2.2-7-5s3-5 7-5Z\"/><path d=\"M7 8h.01M12 8h.01M12 15h.01M17 15h.01\"/>"
+    },
+    {
+      "id": "cv",
+      "label": "CV",
+      "icon": "<path d=\"M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6Z\"/><path d=\"M14 2v6h6M8 13h8M8 17h6\"/>"
+    }
+  ],
+  "linkLimits": {
+    "size": [
+      10,
+      24
+    ],
+    "gap": [
+      0,
+      32
+    ],
+    "offset": [
+      0,
+      160
+    ],
+    "x": [
+      0,
+      100
+    ],
+    "y": [
+      0,
+      100
+    ]
+  }
+}

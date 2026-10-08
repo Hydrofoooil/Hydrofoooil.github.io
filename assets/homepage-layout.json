@@ -1,0 +1,41 @@
+{
+  "english": {
+    "text": "Ting Mao",
+    "font": "georgia",
+    "size": 70,
+    "weight": 600,
+    "color": "#25352b",
+    "tracking": -0.7,
+    "x": 9.877,
+    "y": 13.583
+  },
+  "chinese": {
+    "text": "毛挺",
+    "font": "stzhongsong",
+    "size": 43,
+    "weight": 400,
+    "color": "#25352b",
+    "tracking": 10.6,
+    "x": 10.4,
+    "y": 23.982
+  },
+  "links": {
+    "style": "outline",
+    "font": "sans",
+    "size": 14,
+    "gap": 10,
+    "color": "#25352b",
+    "followName": true,
+    "offset": 26,
+    "x": 3.333,
+    "y": 15,
+    "destinations": {
+      "email": "tingmao0922@gmail.com",
+      "scholar": "",
+      "github": "https://github.com/Hydrofoooil",
+      "wechat": "",
+      "cv": ""
+    },
+    "wechatQr": "assets/wechat-qr.jpg"
+  }
+}

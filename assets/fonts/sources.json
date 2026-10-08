@@ -1,0 +1,178 @@
+[
+  {
+    "id": "eb-garamond",
+    "family": "TM Garamond",
+    "weight": 400,
+    "source": "/usr/share/fonts/truetype/ebgaramond/EBGaramond12-Regular.ttf",
+    "sourceSha256": "689aa494b0eb1913085eaeb84d28b18e3b788b45dddbb3083a676d2e8896b5a4",
+    "fsType": 0,
+    "file": "eb-garamond-400.woff2",
+    "coverage": "Latin, extended Latin and general punctuation",
+    "notice": "licenses/fonts-ebgaramond.txt"
+  },
+  {
+    "id": "pagella",
+    "family": "TM Pagella",
+    "weight": 400,
+    "source": "/usr/share/texmf/fonts/opentype/public/tex-gyre/texgyrepagella-regular.otf",
+    "sourceSha256": "44e64260716d8f2bbe412baa1ee99b7c995190ac4573177c24def0b9200438c7",
+    "fsType": 0,
+    "file": "pagella-400.woff2",
+    "coverage": "Latin, extended Latin and general punctuation",
+    "notice": "licenses/fonts-texgyre.txt"
+  },
+  {
+    "id": "pagella",
+    "family": "TM Pagella",
+    "weight": 700,
+    "source": "/usr/share/texmf/fonts/opentype/public/tex-gyre/texgyrepagella-bold.otf",
+    "sourceSha256": "dd4f9b69f0b24f1fb9be8634abf1fce2009e5c68a30842a3e9f5d6e535900abd",
+    "fsType": 0,
+    "file": "pagella-700.woff2",
+    "coverage": "Latin, extended Latin and general punctuation",
+    "notice": "licenses/fonts-texgyre.txt"
+  },
+  {
+    "id": "termes",
+    "family": "TM Termes",
+    "weight": 400,
+    "source": "/usr/share/texmf/fonts/opentype/public/tex-gyre/texgyretermes-regular.otf",
+    "sourceSha256": "cc3fe7c707b81428d23d54df3eadd9228a2bf6a4d43125d94df56f5f63134659",
+    "fsType": 12,
+    "file": "termes-400.woff2",
+    "coverage": "Latin, extended Latin and general punctuation",
+    "notice": "licenses/fonts-texgyre.txt"
+  },
+  {
+    "id": "termes",
+    "family": "TM Termes",
+    "weight": 700,
+    "source": "/usr/share/texmf/fonts/opentype/public/tex-gyre/texgyretermes-bold.otf",
+    "sourceSha256": "2fb3e952065fa153c7e4e64e04b98b9d79225739b6025aa3f0f0782d299ff61e",
+    "fsType": 12,
+    "file": "termes-700.woff2",
+    "coverage": "Latin, extended Latin and general punctuation",
+    "notice": "licenses/fonts-texgyre.txt"
+  },
+  {
+    "id": "schola",
+    "family": "TM Schola",
+    "weight": 400,
+    "source": "/usr/share/texmf/fonts/opentype/public/tex-gyre/texgyreschola-regular.otf",
+    "sourceSha256": "935b82e25f56b1d1276ca82793205e8ce254fbb37ebd38bedf7388cef21fbf44",
+    "fsType": 12,
+    "file": "schola-400.woff2",
+    "coverage": "Latin, extended Latin and general punctuation",
+    "notice": "licenses/fonts-texgyre.txt"
+  },
+  {
+    "id": "schola",
+    "family": "TM Schola",
+    "weight": 700,
+    "source": "/usr/share/texmf/fonts/opentype/public/tex-gyre/texgyreschola-bold.otf",
+    "sourceSha256": "988c7b2a0ff0eae77d1df3338751b3c47a5e759117734a375b8e7f9de80e698b",
+    "fsType": 12,
+    "file": "schola-700.woff2",
+    "coverage": "Latin, extended Latin and general punctuation",
+    "notice": "licenses/fonts-texgyre.txt"
+  },
+  {
+    "id": "bonum",
+    "family": "TM Bonum",
+    "weight": 400,
+    "source": "/usr/share/texmf/fonts/opentype/public/tex-gyre/texgyrebonum-regular.otf",
+    "sourceSha256": "8ad5a53ae61d710fe1773f4ecc7fdf6dde7df1df59faa4492a24def95077d6b3",
+    "fsType": 12,
+    "file": "bonum-400.woff2",
+    "coverage": "Latin, extended Latin and general punctuation",
+    "notice": "licenses/fonts-texgyre.txt"
+  },
+  {
+    "id": "bonum",
+    "family": "TM Bonum",
+    "weight": 700,
+    "source": "/usr/share/texmf/fonts/opentype/public/tex-gyre/texgyrebonum-bold.otf",
+    "sourceSha256": "173710158270252ec1ddd5e69a07fc71853680c7188d67a84d794a465a4dff81",
+    "fsType": 12,
+    "file": "bonum-700.woff2",
+    "coverage": "Latin, extended Latin and general punctuation",
+    "notice": "licenses/fonts-texgyre.txt"
+  },
+  {
+    "id": "noto-serif",
+    "family": "TM Noto Serif",
+    "weight": 400,
+    "source": "/usr/share/fonts/truetype/noto/NotoSerif-Regular.ttf",
+    "sourceSha256": "9d7583b7dc9e812afd32a14280c5cac3160012efe50c8d08938f4fea266ff67f",
+    "fsType": 0,
+    "file": "noto-serif-400.woff2",
+    "coverage": "Latin, extended Latin and general punctuation",
+    "notice": "licenses/fonts-noto-core.txt"
+  },
+  {
+    "id": "noto-serif",
+    "family": "TM Noto Serif",
+    "weight": 700,
+    "source": "/usr/share/fonts/truetype/noto/NotoSerif-Bold.ttf",
+    "sourceSha256": "0af0ff2be8f84910fb21ec5fe1b6b7395e3073250502a334baf6ca2f860c88fe",
+    "fsType": 0,
+    "file": "noto-serif-700.woff2",
+    "coverage": "Latin, extended Latin and general punctuation",
+    "notice": "licenses/fonts-noto-core.txt"
+  },
+  {
+    "id": "liberation-serif",
+    "family": "TM Classic Serif",
+    "weight": 400,
+    "source": "/usr/share/fonts/truetype/liberation2/LiberationSerif-Regular.ttf",
+    "sourceSha256": "29d12439831b7f59194efec85872f24f54eff05738933f9a860220d2abff88ba",
+    "fsType": 0,
+    "file": "liberation-serif-400.woff2",
+    "coverage": "Latin, extended Latin and general punctuation",
+    "notice": "licenses/fonts-liberation2.txt"
+  },
+  {
+    "id": "liberation-serif",
+    "family": "TM Classic Serif",
+    "weight": 700,
+    "source": "/usr/share/fonts/truetype/liberation2/LiberationSerif-Bold.ttf",
+    "sourceSha256": "446a4421f297698427170fd7db20e59169a4188baaaf940e9bea58af6341a723",
+    "fsType": 0,
+    "file": "liberation-serif-700.woff2",
+    "coverage": "Latin, extended Latin and general punctuation",
+    "notice": "licenses/fonts-liberation2.txt"
+  },
+  {
+    "id": "dejavu-serif",
+    "family": "TM DejaVu Serif",
+    "weight": 400,
+    "source": "/usr/share/fonts/truetype/dejavu/DejaVuSerif.ttf",
+    "sourceSha256": "3731a19f2b50d86d81dd1a1effcd81492ed1fa44f6ea904792dd98fdae9b3dfe",
+    "fsType": 0,
+    "file": "dejavu-serif-400.woff2",
+    "coverage": "Latin, extended Latin and general punctuation",
+    "notice": "licenses/fonts-dejavu-core.txt"
+  },
+  {
+    "id": "dejavu-serif",
+    "family": "TM DejaVu Serif",
+    "weight": 700,
+    "source": "/usr/share/fonts/truetype/dejavu/DejaVuSerif-Bold.ttf",
+    "sourceSha256": "f81ce497906182460f9a4beb89bec7c1265af2182f8110c25821dfc88486942e",
+    "fsType": 0,
+    "file": "dejavu-serif-700.woff2",
+    "coverage": "Latin, extended Latin and general punctuation",
+    "notice": "licenses/fonts-dejavu-core.txt"
+  },
+  {
+    "id": "stzhongsong",
+    "family": "TM STZhongsong",
+    "weight": 400,
+    "source": "/home/maoting/.local/share/fonts/STZHONGS.TTF",
+    "sourceSha256": "e822a3f2859a6cc982f04c6ad1eabc18371ce26d6874b710188a30c35dced0f1",
+    "fsType": 8,
+    "file": "stzhongsong-400.woff2",
+    "coverage": "毛挺",
+    "notice": "licenses/stzhongsong-source-notice.txt"
+  }
+]

@@ -1,0 +1,128 @@
+@font-face {
+  font-family: "TM Garamond";
+  src: url("eb-garamond-400.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "TM Pagella";
+  src: url("pagella-400.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "TM Pagella";
+  src: url("pagella-700.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "TM Termes";
+  src: url("termes-400.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "TM Termes";
+  src: url("termes-700.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "TM Schola";
+  src: url("schola-400.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "TM Schola";
+  src: url("schola-700.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "TM Bonum";
+  src: url("bonum-400.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "TM Bonum";
+  src: url("bonum-700.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "TM Noto Serif";
+  src: url("noto-serif-400.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "TM Noto Serif";
+  src: url("noto-serif-700.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "TM Classic Serif";
+  src: url("liberation-serif-400.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "TM Classic Serif";
+  src: url("liberation-serif-700.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "TM DejaVu Serif";
+  src: url("dejavu-serif-400.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "TM DejaVu Serif";
+  src: url("dejavu-serif-700.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "TM STZhongsong";
+  src: url("stzhongsong-400.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  unicode-range: U+6BDB, U+633A;
+}

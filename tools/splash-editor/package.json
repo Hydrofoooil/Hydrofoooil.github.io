@@ -1,0 +1,26 @@
+{
+  "name": "hydrofoooil-art-mask-editor",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "check": "node check-editor.mjs",
+    "check:presets": "node check-presets.mjs",
+    "check:layout": "node check-layout.mjs",
+    "check:scene": "node check-scene.mjs"
+  },
+  "dependencies": {
+    "@ink-trace/core": "0.1.0",
+    "@watercolorizer/watercolorizer": "2.2.0",
+    "easy-brush": "0.5.0",
+    "fabric": "6.9.0",
+    "p5.brush": "2.2.3",
+    "perfect-freehand": "1.2.2",
+    "roughjs": "4.6.6",
+    "three-legacy": "npm:three@0.77.0"
+  },
+  "devDependencies": {
+    "esbuild": "0.25.12",
+    "playwright": "1.64.0"
+  }
+}

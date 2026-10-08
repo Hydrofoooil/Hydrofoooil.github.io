@@ -1,0 +1,117 @@
+[
+  {
+    "name": "@4bitlabs/vec2",
+    "version": "3.0.4",
+    "source": "https://www.npmjs.com/package/@4bitlabs/vec2/v/3.0.4",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/32bitkid/sci.js.git"
+    },
+    "license": "ISC",
+    "licenseFile": "LICENSE.txt"
+  },
+  {
+    "name": "@ink-trace/core",
+    "version": "0.1.0",
+    "source": "https://www.npmjs.com/package/@ink-trace/core/v/0.1.0",
+    "repository": null,
+    "license": "Not declared by upstream package",
+    "licenseFile": null
+  },
+  {
+    "name": "@watercolorizer/convolution",
+    "version": "2.1.1",
+    "source": "https://www.npmjs.com/package/@watercolorizer/convolution/v/2.1.1",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/32bitkid/watercolorizer.git"
+    },
+    "license": "ISC",
+    "licenseFile": "LICENSE.txt"
+  },
+  {
+    "name": "@watercolorizer/watercolorizer",
+    "version": "2.2.0",
+    "source": "https://www.npmjs.com/package/@watercolorizer/watercolorizer/v/2.2.0",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/32bitkid/watercolorizer.git"
+    },
+    "license": "ISC",
+    "licenseFile": "LICENSE.txt"
+  },
+  {
+    "name": "easy-brush",
+    "version": "0.5.0",
+    "source": "https://www.npmjs.com/package/easy-brush/v/0.5.0",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/DQLean/Easy-Brush"
+    },
+    "license": "MIT",
+    "licenseFile": "LICENSE"
+  },
+  {
+    "name": "fabric",
+    "version": "6.9.0",
+    "source": "https://www.npmjs.com/package/fabric/v/6.9.0",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/fabricjs/fabric.js"
+    },
+    "license": "MIT",
+    "licenseFile": "LICENSE"
+  },
+  {
+    "name": "p5.brush",
+    "version": "2.2.3",
+    "source": "https://www.npmjs.com/package/p5.brush/v/2.2.3",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/acamposuribe/p5.brush.git"
+    },
+    "license": "MIT",
+    "licenseFile": "LICENSE.md"
+  },
+  {
+    "name": "perfect-freehand",
+    "version": "1.2.2",
+    "source": "https://www.npmjs.com/package/perfect-freehand/v/1.2.2",
+    "repository": "https://github.com/steveruizok/perfect-freehand",
+    "license": "MIT",
+    "licenseFile": "LICENSE"
+  },
+  {
+    "name": "roughjs",
+    "version": "4.6.6",
+    "source": "https://www.npmjs.com/package/roughjs/v/4.6.6",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/pshihn/rough.git"
+    },
+    "license": "MIT",
+    "licenseFile": "LICENSE"
+  },
+  {
+    "name": "simplify-ts",
+    "version": "1.0.2",
+    "source": "https://www.npmjs.com/package/simplify-ts/v/1.0.2",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/METACEO/simplify-ts.git"
+    },
+    "license": "MIT",
+    "licenseFile": "LICENSE"
+  },
+  {
+    "name": "three-legacy",
+    "version": "0.77.0",
+    "source": "https://www.npmjs.com/package/three/v/0.77.0",
+    "repository": {
+      "type": "git",
+      "url": "git://github.com/mrdoob/three.js.git"
+    },
+    "license": "MIT",
+    "licenseFile": null
+  }
+]

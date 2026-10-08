@@ -1,0 +1,108 @@
+/* Text positions refer to the whole browser viewport; artwork remains independent. */
+.site-header { position: absolute; inset: 0; padding: 0; pointer-events: none; }
+.identity { position: absolute; inset: 0; margin: 0; }
+.name-en, .name-zh {
+  position: absolute;
+  display: block;
+  margin: 0;
+  width: max-content;
+  max-width: 100vw;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  pointer-events: auto;
+}
+
+/* Outline / underline hover treatments adapted from UI Layouts; notice in assets/vendor/ui-layouts. */
+.social-links {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--link-gap, 10px);
+  width: max-content;
+  max-width: max(150px, calc(100% - var(--link-left, 3.333%) - 20px));
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: .01em;
+  pointer-events: auto;
+}
+.social-row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--link-gap, 10px); max-width: 100%; }
+.social-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .55em;
+  padding: .8em 1em;
+  min-height: 42px;
+  border: 1px solid color-mix(in srgb, currentColor 25%, transparent);
+  border-radius: 999px;
+  background: #fafbf8e8;
+  color: inherit;
+  text-decoration: none;
+  white-space: nowrap;
+  font: inherit;
+  cursor: pointer;
+  transition: color .22s, background .22s, border-color .22s, box-shadow .22s, transform .22s;
+}
+.social-link:hover, .social-link:focus-visible {
+  border-color: currentColor;
+  box-shadow: 0 3px 12px #25352b12;
+  transform: translateY(-2px);
+}
+.social-link:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+.social-link[aria-disabled="true"] { opacity: .48; cursor: default; }
+.social-link[aria-disabled="true"]:hover { box-shadow: none; transform: none; border-color: color-mix(in srgb, currentColor 25%, transparent); }
+.social-icon { width: 1.15em; height: 1.15em; flex: none; }
+.social-arrow { font-size: .95em; opacity: .5; transition: transform .22s, opacity .22s; }
+.social-link:hover .social-arrow { transform: translate(1px, -1px); opacity: 1; }
+.social-links[data-style="underline"] .social-link { border-color: transparent; border-radius: 0; background: transparent; padding-inline: .3em; }
+.social-links[data-style="underline"] .social-link::after {
+  content: "";
+  position: absolute;
+  bottom: .25em;
+  left: .3em;
+  right: .3em;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform .3s cubic-bezier(.65,.05,.36,1);
+}
+.social-links[data-style="underline"] .social-link:hover::after,
+.social-links[data-style="underline"] .social-link:focus-visible::after { transform: scaleX(1); transform-origin: bottom left; }
+.social-links[data-style="underline"] .social-link:hover { box-shadow: none; transform: none; }
+.social-links[data-style="underline"] .social-link[aria-disabled="true"]::after { display: none; }
+.social-links[data-style="soft"] .social-link { border-color: transparent; background: color-mix(in srgb, currentColor 7%, #fafbf8); }
+.social-links[data-style="soft"] .social-link:hover { background: color-mix(in srgb, currentColor 12%, #fafbf8); }
+.wechat-card {
+  position: fixed;
+  z-index: 5;
+  inset: 0;
+  margin: auto;
+  width: min(320px, calc(100vw - 32px));
+  height: max-content;
+  max-height: calc(100dvh - 32px);
+  overflow: auto;
+  padding: 14px;
+  border: 1px solid #25352b24;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 12px 42px #25352b26;
+  color: #25352b;
+  font: 14px/1.6 system-ui, sans-serif;
+  text-align: center;
+  pointer-events: auto;
+}
+.wechat-card::backdrop { background: #25352b40; backdrop-filter: blur(4px); }
+.wechat-heading { display: flex; align-items: center; justify-content: space-between; padding: 0 4px 10px; font-weight: 600; }
+.wechat-heading button { border: 0; border-radius: 50%; width: 30px; height: 30px; background: #25352b0c; color: inherit; font: 22px/1 system-ui, sans-serif; cursor: pointer; }
+.wechat-card img { display: block; width: auto; max-width: 100%; height: auto; max-height: calc(100dvh - 110px); margin-inline: auto; object-fit: contain; }
+.wechat-card p { margin: 10px 0 2px; overflow-wrap: anywhere; }
+.wechat-card strong { display: block; }
+@media (max-width: 600px) {
+  .social-link { padding: .65em .7em; gap: .45em; min-height: 40px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .social-link, .social-arrow, .social-link::after { transition: none !important; }
+}

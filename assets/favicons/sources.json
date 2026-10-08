@@ -1,0 +1,37 @@
+[
+  {
+    "id": "zju",
+    "page": "https://www.zju.edu.cn/english/2023/0323/c74903a2732011/page.htm",
+    "source": "https://www.zju.edu.cn/_upload/article/images/c3/98/1fb1d281492eb477a098ef7a2901/05966b26-ab45-470d-94c1-99b1e02d12f4.png",
+    "file": "zju-eagle.png",
+    "sourceFile": "../../archive/source/zju-official-mark.png",
+    "note": "Transparent crop of the eagle in the university's official seal."
+  },
+  {
+    "id": "scalelab",
+    "page": "https://scalelab-sjtu.github.io/",
+    "file": "scalelab-logo.webp",
+    "source": "https://xhslink.cn/o/8UqM5VXoCot",
+    "note": "Avatar image supplied by the site owner."
+  },
+  {
+    "id": "yaomu",
+    "page": "https://yaomarkmu.github.io/",
+    "file": "person.svg",
+    "note": "Generic person outline icon."
+  },
+  {
+    "id": "kinetix",
+    "page": "https://www.kinetixai.tech/en",
+    "source": "https://www.kinetixai.tech/favicon.ico",
+    "file": "kinetix.png",
+    "logoSource": "https://assets.kinetixai.cn/kinetixai/logo-1.svg",
+    "logoFile": "kinetixai-logo.svg"
+  },
+  {
+    "id": "robocon",
+    "page": "http://www.idc-robocon.org/idc2025_eng/index.html",
+    "source": "http://www.idc-robocon.org/idc2025_eng/favicon.ico",
+    "file": "robocon.png"
+  }
+]

@@ -1,0 +1,122 @@
+{
+  "upstreams": {
+    "washes": "https://github.com/castavridis/washes-js/tree/14e485b6e83dba1b5d02c987ae2ddd2222c60063",
+    "hokusai": "https://github.com/reearth/hokusai/tree/f7e998173c0e7427b95afe0b6947e3103da60f00",
+    "aquarelle": "https://github.com/Ramotion/aquarelle/tree/aef4c7cd9fc4ab482559f49447822a1df169216d",
+    "hokusaiDemo": "https://reearth.github.io/hokusai/"
+  },
+  "files": [
+    {
+      "path": "Aquarelle.js",
+      "sha256": "72a3f5218602268f052e632e24e8ddb636e0eb62acf2ac7dc73ef77e54967c27"
+    },
+    {
+      "path": "AquarellePass.js",
+      "sha256": "d650bd13d78ca28c0a7c9df3f5773487cd342a5cea88a967716bde518b0e3d2a"
+    },
+    {
+      "path": "aquarelle-LICENSE",
+      "sha256": "69b59812bb97a2d864fe20a408cbee527a960238746acdba422142f13e02af6a"
+    },
+    {
+      "path": "hokusai/LICENSE-MIT",
+      "sha256": "d709b8b19c8f0dca4a469ce2ba095cf9ca6655788eeab8376a1a0fdc56e73422"
+    },
+    {
+      "path": "hokusai/brush-fixtures-CC0.txt",
+      "sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499"
+    },
+    {
+      "path": "hokusai/brush.myb",
+      "sha256": "19b354e458b65aedce6d26f0bea6ab23f2920309b340d608bdfc3bde2e103f33"
+    },
+    {
+      "path": "hokusai/calligraphy.myb",
+      "sha256": "f2c3ae4cefa541bf98b8215fef86cf1da7146af1613e97b3eb269614aa385cb1"
+    },
+    {
+      "path": "hokusai/charcoal.myb",
+      "sha256": "c166706ab5eee26370ccbd547793ed696ebceaa988375037fdf2bf738dc059bc"
+    },
+    {
+      "path": "hokusai/hokusai_wasm.js",
+      "sha256": "9e5b025345410b1d38490d8f6526213c80cf5d2254c0b4c532f2ad68647a6b59"
+    },
+    {
+      "path": "hokusai/hokusai_wasm_bg.wasm",
+      "sha256": "a8efe7980158ec2c8f60fa3015af7a7facc84f32233cdecc80c3aefb0874e343"
+    },
+    {
+      "path": "hokusai/marker_fat.myb",
+      "sha256": "987fe526b4ca628fa0783ac858e1b08bfd81d260740c0f5f7349fc2693ee06d2"
+    },
+    {
+      "path": "licenses/@4bitlabs-vec2.txt",
+      "sha256": "2478debefbdd4b77dae1f902860694d31a028aefcb220c182aa3c0739bbe5018"
+    },
+    {
+      "path": "licenses/@watercolorizer-convolution.txt",
+      "sha256": "2478debefbdd4b77dae1f902860694d31a028aefcb220c182aa3c0739bbe5018"
+    },
+    {
+      "path": "licenses/@watercolorizer-watercolorizer.txt",
+      "sha256": "2478debefbdd4b77dae1f902860694d31a028aefcb220c182aa3c0739bbe5018"
+    },
+    {
+      "path": "licenses/easy-brush.txt",
+      "sha256": "9688cda04aa63de3a6073ed378d6c85f7168730f02c362f4fd5c1c709e936f55"
+    },
+    {
+      "path": "licenses/fabric.txt",
+      "sha256": "d8f93c5639b2d11680911dff6e91567af4c44dd79a87f8ff2e85d1c8b91f9702"
+    },
+    {
+      "path": "licenses/p5.brush.txt",
+      "sha256": "cabbece1a276329fa28ab40f1c99af3af2b7852a329551a9a485b2199616583a"
+    },
+    {
+      "path": "licenses/perfect-freehand.txt",
+      "sha256": "6a5ac82b42ce0af6a1e5fe39b46f0b52f1368e81e437175e8d9ae21569c8688e"
+    },
+    {
+      "path": "licenses/roughjs.txt",
+      "sha256": "dca9a392272606ac748ac0976a2a1133f14eef841c27beaa51a844d53c56a09d"
+    },
+    {
+      "path": "licenses/simplify-ts.txt",
+      "sha256": "4d879652ae431b516d2ab720098683a89cd8ffaf825d55511367ee72548a210f"
+    },
+    {
+      "path": "licenses/three-legacy.txt",
+      "sha256": "5eb9be209f84c4588f573b9abd8e13c04ce187ad6f40e8b12993d00b1428de54"
+    },
+    {
+      "path": "three/CopyShader.js",
+      "sha256": "117a3d32ef75620daec8674613c8afd5ad545265162e5376af9f1caadcaf50b9"
+    },
+    {
+      "path": "three/EffectComposer.js",
+      "sha256": "f41b8fca6997917961c3e1719681ad411eb36881410126ff7d8052a3d8d06e7c"
+    },
+    {
+      "path": "three/ShaderPass.js",
+      "sha256": "debbc0b27cce4d85dc32ae06d8a14e483613480d1d112a152d33037687a8e83a"
+    },
+    {
+      "path": "three/three.min.js",
+      "sha256": "5baee1c84d61161244beaf719c7fc9246b65352536b78e840547503870359554"
+    },
+    {
+      "path": "washes-LICENSE",
+      "sha256": "2a4683874085f30957e2360f207a0553261dac43ffc6d7e9beb9dce28eae00b0"
+    },
+    {
+      "path": "washes-README.md",
+      "sha256": "3f3d197ba874f8e111197d636c1f609f4041e6eb0e81d2a3a9d263fa1e22920e"
+    },
+    {
+      "path": "washes.js",
+      "sha256": "f9635eb6c510cb74ddaf63b83cd02e29116aacfebd6a64f5bcfef742d8e8f5d6"
+    }
+  ]
+}

@@ -86,6 +86,17 @@ def validate_links(links=None):
     return result | {'destinations': destinations, 'wechatQr': link_url(value['wechatQr'].strip(), True)}
 
 
+def wechat_markup(links):
+    destination = links['destinations']['wechat']
+    web_link = bool(re.match(r'^https?://', destination, flags=re.I))
+    contact = (f'<a href="{escape(links["wechatQr"])}" target="_blank" rel="noopener noreferrer"><img src="{escape(links["wechatQr"])}" alt="毛挺的微信二维码" loading="lazy"></a>' if links['wechatQr'] else '')
+    if destination and not web_link:
+        contact += f'<p>微信号 <strong>{escape(destination)}</strong></p>'
+    if web_link:
+        contact += f'<a href="{escape(destination)}" target="_blank" rel="noopener noreferrer">打开微信链接 ↗</a>'
+    return f'<div class="wechat-card" id="wechat-contact" popover="auto" aria-labelledby="wechat-heading"><div class="wechat-heading"><span id="wechat-heading">WeChat</span><button type="button" popovertarget="wechat-contact" popovertargetaction="hide" aria-label="关闭微信二维码">×</button></div>{contact}</div>'
+
+
 def links_markup(links):
     items = []
     for item in LAYOUT_SCHEMA['linkItems']:
@@ -94,12 +105,7 @@ def links_markup(links):
         destination = links['destinations'][key]
         web_link = bool(re.match(r'^https?://', destination, flags=re.I))
         if key == 'wechat' and ((destination and not web_link) or links['wechatQr']):
-            contact = (f'<a href="{escape(links["wechatQr"])}" target="_blank" rel="noopener noreferrer"><img src="{escape(links["wechatQr"])}" alt="毛挺的微信二维码" loading="lazy"></a>' if links['wechatQr'] else '')
-            if destination and not web_link:
-                contact += f'<p>微信号 <strong>{escape(destination)}</strong></p>'
-            if web_link:
-                contact += f'<a href="{escape(destination)}" target="_blank" rel="noopener noreferrer">打开微信链接 ↗</a>'
-            items.append(f'<button type="button" class="social-link" data-link="wechat" popovertarget="wechat-contact">{content}</button><div class="wechat-card" id="wechat-contact" popover="auto" aria-labelledby="wechat-heading"><div class="wechat-heading"><span id="wechat-heading">WeChat</span><button type="button" popovertarget="wechat-contact" popovertargetaction="hide" aria-label="关闭微信二维码">×</button></div>{contact}</div>')
+            items.append(f'<button type="button" class="social-link" data-link="wechat" popovertarget="wechat-contact">{content}</button>')
         else:
             href = 'mailto:' + destination if key == 'email' and destination else destination
             attributes = f'href="{escape(href)}"' + (' target="_blank" rel="noopener noreferrer"' if key != 'email' else '') if href else 'role="link" aria-disabled="true" title="Profile coming soon!"'
@@ -230,6 +236,9 @@ def homepage_with_photo(entry, bounds, layout=None):
         html, count = re.subn(r'(<!-- personal-links:start -->).*?(<!-- personal-links:end -->)', lambda match: match[1] + '\n' + social + '\n' + match[2], html, count=1, flags=re.S)
         if not count:
             raise ValueError('找不到主页个人链接元素')
+        html, count = re.subn(r'(<!-- wechat-contact:start -->).*?(<!-- wechat-contact:end -->)', lambda match: match[1] + '\n' + wechat_markup(layout['links']) + '\n' + match[2], html, count=1, flags=re.S)
+        if not count:
+            raise ValueError('找不到主页微信二维码元素')
         outputs[html_path] = html
         outputs[ROOT / 'assets' / 'homepage-layout.css'] = layout_styles(layout)
         outputs[ROOT / 'assets' / 'homepage-layout.json'] = json.dumps(layout, ensure_ascii=False, indent=2) + '\n'

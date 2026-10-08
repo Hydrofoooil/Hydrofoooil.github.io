@@ -63,7 +63,10 @@
         a.removeAttribute("aria-disabled");
         a.removeAttribute("title");
         a.querySelector(".soon")?.remove();
-        if (a.dataset.link === "paper") a.download = "OmniHOI_arxiv.pdf";
+        if (a.dataset.link === "paper") {
+          a.target = "_blank";
+          a.rel = "noopener noreferrer";
+        }
         if (/^https?:/.test(url)) { a.target = "_blank"; a.rel = "noopener"; }
       } else {
         a.classList.add("is-soon");

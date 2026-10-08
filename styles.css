@@ -126,7 +126,8 @@ html.has-hero-scene { height: 100%; overflow: hidden; overscroll-behavior: none;
 .publication-video-label-robot { top: calc(50% + 8px); }
 .publication-preview:hover .publication-filmstrip, .publication-preview:focus-visible .publication-filmstrip { animation-play-state: paused; }
 .publication-preview:focus-visible { outline: 2px solid #354c3d; outline-offset: 4px; }
-.publication-details { min-width: 0; }
+.publication-details { min-width: 0; grid-column: 1; grid-row: 1; }
+.publication > .publication-preview { grid-column: 2; grid-row: 1; }
 .publication h3 { margin: 0 0 10px; font-size: 19px; font-weight: 600; line-height: 1.5; text-wrap: pretty; }
 @keyframes publication-pan {
   from { transform: translateX(0); }
@@ -151,13 +152,15 @@ html.has-hero-scene { height: 100%; overflow: hidden; overscroll-behavior: none;
   .profile-sections { margin-top: 34px; }
   .profile-section h2 { font-size: 30px; }
   .profile-section-empty { min-height: 84px; }
-  .publication { grid-template-columns: minmax(0, 1fr) 160px; gap: 22px; }
+  .publication { display: flow-root; }
+  .publication > .publication-preview { float: right; width: 160px; margin: 0 0 12px 22px; }
+  .publication-meta { clear: both; }
   .research-experience-entry { gap: 20px; }
   .publication h3 { font-size: 17px; }
   .honors-list li { font-size: 14px; }
 }
 @media (max-width: 520px) {
-  .publication { grid-template-columns: minmax(0, 1fr) 104px; gap: 16px; }
+  .publication > .publication-preview { width: 104px; margin-left: 16px; }
   .research-experience-entry { grid-template-columns: 64px minmax(0, 1fr); align-items: start; gap: 16px; }
   .experience-icon { font-size: 40px; }
   .research-experience-entry h3 { font-size: 17px; }

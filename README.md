@@ -79,7 +79,7 @@ cd ../..
 
 首页雾化过渡使用 Three.js 0.134.0 的透明着色器与 GSAP 3.15.0 内置的 [Observer](https://gsap.com/docs/v3/Plugins/Observer/)。网页固定为一个窗口的高度，滚轮和触摸手势直接推进同一场景中的动画。`assets/living-ink-mask.js` 从工作台保存的墨迹蒙版生成距离场，直接改变照片的透明度轮廓：边缘流动、羽化、变成浅色雾丝并逐步向内消散；暂停滚动时，过渡中的边缘仍缓慢流动。`assets/hero-transition.js` 同步让照片围绕人像缩小、333.png 背景逐渐显现、姓名向上离开，个人介绍和后续内容从窗口底部升起；文字所在容器完全透明，不携带第二页背景。反向操作恢复人像和原始墨迹轮廓。支持方向键、Page Up/Down、Home/End 和原有锚点链接。活动蒙版是本项目的自定义着色器，未使用另一个雾层覆盖固定照片。Three.js 与 GSAP 保存在 `assets/vendor/`，运行不依赖外部 CDN；授权见对应目录。工作台 iframe、减少动效模式或不支持 WebGL 的环境保留原有滚动页面。
 
-个人介绍包含英文正文、Research Experience、Publications 与 Selected Honors；经历按倒序展示 Kinetix AI 和 ScaleLab，论文展示 OmniHOI 与 EgoMatrix。论文采用左侧文字、右侧方形预览图：OmniHOI 使用项目主页 Real-world deployment 的上下视频对比，EgoMatrix 使用论文第一页主图，两者均水平循环滚动并在悬停时暂停。桌面端方框大小随文字高度调整，顶部和底部对齐，并带有柔和投影。素材位于 `assets/publications/`，`preview.js` 同步重复视频，并在不可见或系统要求减少动效时暂停播放。内容位于 `index.html`，样式位于 `styles.css`，修改首页图片或排版时保留个人介绍内容。
+个人介绍包含英文正文、Research Experience、Publications 与 Selected Honors；经历按倒序展示 Kinetix AI 和 ScaleLab，论文展示 OmniHOI 与 EgoMatrix。论文采用左侧文字、右侧方形预览图：OmniHOI 使用项目主页 Real-world deployment 的上下视频对比，EgoMatrix 使用论文第一页主图，两者均水平循环滚动；悬停只暂停横向滚动，OmniHOI 的人类演示和机器人视频继续播放。桌面端方框大小随文字高度调整，顶部和底部对齐，并带有柔和投影。素材位于 `assets/publications/`，`preview.js` 同步重复视频，并在不可见或系统要求减少动效时暂停播放。内容位于 `index.html`，样式位于 `styles.css`，修改首页图片或排版时保留个人介绍内容。
 点击「应用到本地主页」同时写入姓名文字和 `assets/homepage-layout.css` / `assets/homepage-layout.json`；网页作为静态站点运行，视频与滚动动效通过本地 JavaScript 增强。
 本地预览地址为工作台同一端口下的 `/homepage/`。
 `npm run check:layout` 检查实际拖动、键盘定位、方案往返及桌面/手机预览与网页一致性，检查后恢复本地主页并删除测试方案。

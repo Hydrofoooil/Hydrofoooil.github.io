@@ -22,7 +22,7 @@ for (const preview of document.querySelectorAll('.publication-preview')) {
   const motion = matchMedia('(prefers-reduced-motion: reduce)');
   let visible = false;
   const update = () => {
-    const playing = visible && !motion.matches && !preview.matches(':hover, :focus-within');
+    const playing = visible && !motion.matches;
     for (const video of videos) {
       video.muted = true;
       if (playing) video.play().catch(() => {});
@@ -33,9 +33,6 @@ for (const preview of document.querySelectorAll('.publication-preview')) {
     visible = entry.isIntersecting;
     update();
   }).observe(preview);
-  for (const event of ['pointerenter', 'pointerleave', 'focusin', 'focusout']) {
-    preview.addEventListener(event, update);
-  }
   motion.addEventListener('change', update);
   videos[0].addEventListener('timeupdate', () => {
     for (const video of videos.slice(1)) {

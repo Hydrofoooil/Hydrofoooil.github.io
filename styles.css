@@ -157,6 +157,21 @@ html.has-hero-scene { height: 100%; overflow: hidden; overscroll-behavior: none;
   .publication h3 { font-size: 17px; }
   .honors-list li { font-size: 14px; }
 }
+@media (max-width: 600px) {
+  .hero .social-links {
+    top: auto;
+    bottom: max(106px, calc(env(safe-area-inset-bottom, 0px) + 100px));
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 32px);
+    max-width: none;
+    align-items: center;
+    --link-gap: 8px;
+    font-size: 13px;
+  }
+  .hero .social-row { justify-content: center; }
+  .hero .social-arrow { display: none; }
+}
 @media (max-width: 520px) {
   .publication > .publication-preview { width: 104px; margin-left: 16px; }
   .research-experience-entry { grid-template-columns: 64px minmax(0, 1fr); align-items: start; gap: 16px; }

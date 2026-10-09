@@ -73,6 +73,7 @@ cd ../..
 调整文字不会重新生成墨迹。保存方案及参数 JSON 都包含姓名排版；旧方案未包含排版时保留当前文字设置。
 
 姓名下方提供 Email、Google Scholar、GitHub、WeChat、CV。工作台「首页排版 → 个人链接」可编辑地址、字体、字号、颜色、间距与按钮风格。默认跟随中文名，也可以直接拖动整组链接自由摆放；链接设置随方案保存。留空的地址显示为待配置入口，微信号或二维码通过点击 WeChat 展示。
+CV 按钮在新标签页打开英文简历 `assets/CV_EN.pdf`。更新简历时，将最新编译的 PDF 替换到这个路径。
 圆角描边和悬停下划线参考并改编自 [UI Layouts Creative Buttons](https://www.ui-layouts.com/components/buttons)，使用静态 HTML/CSS，原始示例与 MIT 授权保存在 `assets/vendor/ui-layouts/`。微信二维码使用浏览器原生弹出卡片，可点空白处、关闭按钮或按 Escape 关闭。
 
 首页底部中央的浮动箭头使用 [Lucide Arrow Down](https://lucide.dev/icons/arrow-down)，配磨砂圆钮和轻缓 CSS 动效。点击可在同一窗口中展开个人介绍，也支持滚轮、触摸和键盘浏览。系统开启减少动效时停止浮动并直接跳转。图标源文件与授权见 `assets/vendor/lucide/`。工作台排版预览固定在第一屏，可通过「打开首页测试链接」体验滚动。

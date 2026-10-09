@@ -169,6 +169,7 @@
         const state = { offset: 0 };
         let targetOffset = 0, viewport = innerHeight, transitionDistance = 0, maxOffset = 0;
         let movement;
+        let scrollbar, scrollThumb;
         releases.push(() => movement?.kill());
         let rect;
         const measure = () => {
@@ -190,6 +191,13 @@
         };
         const render = () => {
           if (!rect) return;
+          if (scrollbar) {
+            const trackHeight = scrollbar.clientHeight;
+            const thumbHeight = Math.min(trackHeight, Math.max(44, trackHeight * viewport / (viewport + maxOffset)));
+            scrollThumb.style.height = `${thumbHeight}px`;
+            scrollThumb.style.transform = `translateY(${(trackHeight - thumbHeight) * state.offset / Math.max(1, maxOffset)}px)`;
+            scrollbar.setAttribute('aria-valuenow', Math.round(state.offset / Math.max(1, maxOffset) * 100));
+          }
           const p = Math.min(1, state.offset / transitionDistance);
           const photoScale = 1 - .34 * smooth(0, .85, p);
           depth.style.transform = `scale(${photoScale})`;
@@ -219,6 +227,49 @@
             ease: duration > .35 ? 'power2.inOut' : 'power2.out', onUpdate: render,
           });
         };
+        scrollbar = document.createElement('div');
+        scrollbar.className = 'scene-scrollbar';
+        scrollbar.tabIndex = 0;
+        scrollbar.setAttribute('role', 'scrollbar');
+        scrollbar.setAttribute('aria-label', '页面滚动');
+        scrollbar.setAttribute('aria-controls', profile.id);
+        scrollbar.setAttribute('aria-orientation', 'vertical');
+        scrollbar.setAttribute('aria-valuemin', '0');
+        scrollbar.setAttribute('aria-valuemax', '100');
+        scrollThumb = document.createElement('span');
+        scrollThumb.className = 'scene-scrollbar-thumb';
+        scrollbar.append(scrollThumb);
+        document.body.append(scrollbar);
+        releases.push(() => scrollbar.remove());
+        let dragPointer = null, dragGrab = 0;
+        const seekScrollbar = event => {
+          const track = scrollbar.getBoundingClientRect();
+          const travel = scrollbar.clientHeight - scrollThumb.offsetHeight;
+          moveTo((event.clientY - track.top - dragGrab) / Math.max(1, travel) * maxOffset, true);
+        };
+        listen(scrollbar, 'pointerdown', event => {
+          if (event.button !== 0) return;
+          event.preventDefault();
+          dragPointer = event.pointerId;
+          dragGrab = event.target === scrollThumb ? event.clientY - scrollThumb.getBoundingClientRect().top : scrollThumb.offsetHeight / 2;
+          scrollbar.setPointerCapture(event.pointerId);
+          seekScrollbar(event);
+        });
+        listen(scrollbar, 'pointermove', event => {
+          if (event.pointerId === dragPointer) seekScrollbar(event);
+        });
+        listen(scrollbar, 'lostpointercapture', () => { dragPointer = null; });
+        listen(scrollbar, 'pointerup', event => {
+          if (scrollbar.hasPointerCapture(event.pointerId)) scrollbar.releasePointerCapture(event.pointerId);
+          dragPointer = null;
+        });
+        listen(scrollbar, 'keydown', event => {
+          const steps = { ArrowDown: 70, ArrowUp: -70, PageDown: viewport * .8, PageUp: -viewport * .8 };
+          if (event.key in steps || event.key === 'Home' || event.key === 'End') {
+            event.preventDefault(); event.stopPropagation();
+            moveTo(event.key === 'Home' ? 0 : event.key === 'End' ? maxOffset : targetOffset + steps[event.key]);
+          }
+        });
         const navigate = (hash, immediate = false, duration = .35) => {
           if (!hash || hash === '#home') { moveTo(0, immediate, duration); return true; }
           const target = document.getElementById(hash.slice(1));
@@ -266,7 +317,7 @@
         const observer = ScrollTrigger.observe({
           target: window, type: 'wheel,touch', preventDefault: true, allowClicks: true,
           tolerance: 1, dragMinimum: 3,
-          ignore: [...document.querySelectorAll('.wechat-card, .wechat-card *')],
+          ignore: [scrollbar, scrollThumb, ...document.querySelectorAll('.wechat-card, .wechat-card *')],
           ignoreCheck: event => event.ctrlKey || event.touches?.length > 1,
           onChangeY: self => {
             if (document.querySelector('.wechat-card:popover-open')) return;

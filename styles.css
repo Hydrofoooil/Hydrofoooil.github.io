@@ -142,6 +142,8 @@ html.has-hero-scene { height: 100%; overflow: hidden; overscroll-behavior: none;
 .publication h3 a:hover, .publication h3 a:focus-visible { text-decoration: underline; text-decoration-color: #a3b4a3; text-underline-offset: .2em; }
 .publication-authors, .publication-summary { margin: 0 0 10px; color: #566059; font-size: 14px; line-height: 1.8; }
 .publication-authors { font-family: "TM Termes", "Times New Roman", Times, serif; }
+.publication-corresponding-author { white-space: nowrap; }
+.author-mark { position: relative; top: -.5em; margin-left: .08em; font-size: .72em; line-height: 0; vertical-align: baseline; }
 .publication-authors strong { color: #354c3d; font-weight: 600; }
 .publication-meta { display: flex; justify-content: space-between; align-items: baseline; gap: 20px; margin-top: 16px; font-size: 13px; }
 .publication-links { display: flex; flex-wrap: wrap; gap: 8px 16px; }

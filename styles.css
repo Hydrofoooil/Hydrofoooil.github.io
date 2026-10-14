@@ -107,6 +107,9 @@ html.has-hero-scene { height: 100%; overflow: hidden; overscroll-behavior: none;
 .research-experience-entry h3 a { color: #354c3d; text-decoration: none; }
 .research-experience-entry h3 a:hover, .research-experience-entry h3 a:focus-visible { text-decoration: underline; text-decoration-color: #a3b4a3; text-underline-offset: .2em; }
 .experience-institution { margin: 0 0 3px; color: #78847b; font-size: 14px; line-height: 1.5; }
+.experience-institution { font-weight: 400; }
+.experience-separator { margin-inline: 4px; }
+.experience-description { margin: 6px 0 0; color: #566059; font-size: 14px; line-height: 1.6; }
 .experience-meta { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 6px 16px; }
 .experience-role { margin: 0; color: #566059; font-size: 14px; line-height: 1.5; }
 .experience-date { margin-left: auto; white-space: nowrap; color: #78847b; font-size: 13.5px; font-variant-numeric: tabular-nums; }

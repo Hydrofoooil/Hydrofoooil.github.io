@@ -281,3 +281,68 @@ html.has-hero-scene { height: 100%; overflow: hidden; overscroll-behavior: none;
 .scene-scrollbar-thumb { position: absolute; top: 0; left: 5px; width: 6px; border-radius: 8px; background: #354c3de6; }
 .scene-scrollbar:hover .scene-scrollbar-thumb, .scene-scrollbar:focus-visible .scene-scrollbar-thumb { background: #25352b; }
 .scene-scrollbar:focus-visible { outline: 2px solid #354c3d; outline-offset: 1px; }
+
+/* Academic hero (default): names and links on the left, framed portrait on the right.
+   Scoped to <html data-hero="academic"> so the parked fog hero (data-hero="fog")
+   and the editor-generated homepage-layout.css stay intact. */
+.hero-avatar { display: none; }
+[data-hero="academic"] .hero { height: auto; overflow: visible; }
+[data-hero="academic"] .site-header {
+  position: relative;
+  inset: auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-rows: 1fr auto auto 1fr;
+  grid-template-areas: ". avatar" "identity avatar" "links avatar" ". avatar";
+  column-gap: clamp(32px, 6vw, 72px);
+  max-width: 960px;
+  margin-inline: auto;
+  padding: clamp(56px, 11vh, 128px) 32px 0;
+  pointer-events: auto;
+}
+[data-hero="academic"] .identity { grid-area: identity; position: static; inset: auto; text-shadow: none; }
+[data-hero="academic"] .name-en,
+[data-hero="academic"] .name-zh { position: static; width: auto; max-width: none; }
+[data-hero="academic"] .name-zh { margin-top: 6px; }
+[data-hero="academic"] .social-links {
+  grid-area: links;
+  position: static;
+  transform: none;
+  width: auto;
+  max-width: none;
+  margin-top: 28px;
+  align-items: flex-start;
+}
+[data-hero="academic"] .social-row { justify-content: flex-start; }
+[data-hero="academic"] .hero-avatar {
+  grid-area: avatar;
+  align-self: center;
+  display: block;
+  width: clamp(176px, 22vw, 232px);
+  margin: 0;
+  padding: 6px;
+  border: 1px solid #25352b26;
+  border-radius: 4px;
+  background: #fff;
+  box-shadow: 0 1px 2px #25352b0f, 0 8px 24px -8px #25352b2e;
+}
+[data-hero="academic"] .hero-avatar img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 2px; }
+[data-hero="academic"] .second-page { min-height: 0; }
+[data-hero="academic"] .profile-shell { padding-top: clamp(48px, 6vw, 72px); }
+@media (max-width: 760px) {
+  [data-hero="academic"] .site-header { padding-inline: 24px; }
+  [data-hero="academic"] .profile-shell { padding-top: 44px; }
+}
+@media (max-width: 600px) {
+  [data-hero="academic"] .site-header {
+    grid-template-rows: auto auto;
+    grid-template-areas: "identity avatar" "links links";
+    align-items: center;
+    gap: 24px 16px;
+    padding-top: 40px;
+  }
+  [data-hero="academic"] .name-en { font-size: min(40px, 11.4vw); }
+  [data-hero="academic"] .name-zh { font-size: 26px; letter-spacing: 6px; }
+  [data-hero="academic"] .social-links { margin-top: 0; }
+  [data-hero="academic"] .hero-avatar { width: clamp(96px, 28vw, 112px); padding: 4px; }
+}

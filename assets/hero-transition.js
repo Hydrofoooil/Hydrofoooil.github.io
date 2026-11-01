@@ -1,6 +1,18 @@
 // One viewport: a flowing alpha mask, photo depth and text share scroll progress.
+// Parked: the page shows the academic hero unless <html data-hero="fog"> or
+// ?hero=fog. The fog markup then leaves its inert <template data-hero-fog>
+// (kept there so its images are never fetched in academic mode).
 (() => {
-  if (new URLSearchParams(location.search).get('preview') === '1') return;
+  const root = document.documentElement;
+  const params = new URLSearchParams(location.search);
+  if (['fog', 'academic'].includes(params.get('hero'))) root.dataset.hero = params.get('hero');
+  if (root.dataset.hero !== 'fog') return;
+  const unpark = () => {
+    for (const template of document.querySelectorAll('template[data-hero-fog]')) template.replaceWith(template.content);
+  };
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', unpark, { once: true });
+  else unpark();
+  if (params.get('preview') === '1') return;
   if (!CSS.supports('mask-image', 'linear-gradient(#000, #000)')) return;
   const assetBase = new URL('.', document.currentScript.src);
   const motion = matchMedia('(prefers-reduced-motion: reduce)');

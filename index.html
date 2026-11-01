@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-hero="academic">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,18 +8,22 @@
     <title>Ting Mao · 毛挺</title>
     <link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48">
     <link rel="icon" type="image/png" href="assets/github-avatar.png" sizes="192x192">
-    <link rel="stylesheet" href="styles.css?v=20261015-author-marks">
+    <link rel="stylesheet" href="styles.css?v=20261101-academic-hero">
     <link rel="stylesheet" href="assets/fonts/fonts.css">
     <link rel="stylesheet" href="assets/homepage-layout.css">
     <script src="assets/publications/preview.js" defer></script>
     <script src="assets/contact.js" defer></script>
-    <script src="assets/hero-transition.js?v=20261010-scrollbar"></script>
+    <script src="assets/hero-transition.js?v=20261101-hero-mode"></script>
   </head>
   <body>
     <main>
+      <!-- 雾化首页（已停用，实现保留）：<html data-hero="fog"> 或 ?hero=fog 时，
+           hero-transition.js 会把 <template data-hero-fog> 的内容原位展开。 -->
+      <template data-hero-fog>
       <div class="scene-background" hidden aria-hidden="true">
         <img src="assets/background-333.webp" width="1536" height="1024" alt="" decoding="async">
       </div>
+      </template>
       <section class="hero" id="home" aria-label="首页">
     <header class="site-header">
       <h1 class="identity">
@@ -35,7 +39,12 @@
 <a class="social-link" data-link="cv" href="assets/CV_EN.pdf" target="_blank" rel="noopener noreferrer"><svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6Z"/><path d="M14 2v6h6M8 13h8M8 17h6"/></svg><span>CV</span><span class="social-arrow" aria-hidden="true">↗</span></a></div>
 </nav>
 <!-- personal-links:end -->
+      <figure class="hero-avatar">
+        <img src="assets/avatar.webp" width="600" height="750"
+          alt="我戴着墨镜，背景是盛开的樱花树。" fetchpriority="high">
+      </figure>
     </header>
+      <template data-hero-fog>
       <figure class="portrait">
         <img class="splash-photo" src="assets/portrait-222.webp" width="2528" height="1673"
           alt="我戴着墨镜，坐在盛开的樱花树下。" fetchpriority="high">
@@ -46,6 +55,7 @@
           <path d="m19 12-7 7-7-7"/>
         </svg>
       </a>
+      </template>
       </section>
       <section class="second-page" id="second-page" aria-label="About" lang="en" tabindex="-1">
         <div class="profile-shell">

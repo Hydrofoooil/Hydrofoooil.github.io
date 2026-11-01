@@ -2,15 +2,21 @@
 
 个人主页，通过 GitHub Pages 从 `main` 分支根目录发布到 https://hydrofoooil.github.io/。
 
-## 首页模式（当前：学术布局）
+## 首页模式（当前：照片布局）
 
-首页默认是学术主页布局（`<html data-hero="academic">`）：左侧中英文名和 5 个个人链接，右侧矩形边框头像 `assets/avatar.webp`
-（由 `assets/portrait-222.webp` 裁出的 4:5 半身照，600 × 750），下方直接接个人介绍，正常滚动。样式在 `styles.css` 末尾，
-全部限定在 `[data-hero="academic"]` 下，不改动工作台生成的 `assets/homepage-layout.css`。
+`index.html` 根元素的 `data-hero` 决定首页样式，三种模式共用同一份内容；地址加 `?hero=photo|academic|fog` 可临时切换查看。
 
-下文描述的雾化首页已停用但完整保留：照片、背景、滚动箭头的标记放在 `index.html` 的 `<template data-hero-fog>` 里（惰性，不渲染、不下载图片），
-`assets/hero-transition.js` 在非雾化模式下一开头就返回。临时查看雾化版本：在地址后加 `?hero=fog`；恢复为默认：把 `index.html` 的
-`data-hero="academic"` 改成 `data-hero="fog"`。学术模式下，工作台「首页排版」里拖动的姓名/链接位置不生效（字体、颜色、链接内容仍生效）。
+- **photo（默认）**：`assets/background-333.webp` 铺满第一屏，人物在左；右栏依次是中英文名（按钮固定在名字右侧，空间不足时在右栏内换行，不会掉到名字下方）、
+  5 个个人链接和自我介绍。照片上叠两层以人物为中心的椭圆渐变（人物左侧按 44% 强度），越远越不透明，保证右栏正文对比度不低于 4.5:1。
+  人物位置随窗口比例变化，CSS 变量 `--focus-x/--focus-y` 按 cover 缩放规则计算渐变中心；`--shift` 控制背景左移量，`--hero-text-shift` 控制右栏文字右移量。
+  宽度 ≤ 900px 或竖屏时改为上下排列：照片在上，名字、链接、自我介绍在下。窗口高度不足 840px 时隐藏底部滚动箭头。
+- **academic**：左侧名字和链接，右侧矩形边框头像 `assets/avatar.webp`（由 `assets/portrait-222.webp` 裁出的 4:5 半身照，600 × 750），下方接自我介绍。
+- **fog**：下文描述的雾化过渡首页，已停用但完整保留。
+
+自我介绍（`#biography`）在 HTML 中位于首页 `<section class="hero">` 内；fog 模式启动时 `hero-transition.js` 会把它移回个人介绍栏顶部，随雾化动画一起出现。
+雾化首页的照片、背景、滚动箭头标记放在 `<template data-hero-fog>` 里（惰性，不渲染、不下载图片），`hero-transition.js` 在非 fog 模式下一开头就返回。
+各模式样式在 `styles.css` 末尾，分别限定在 `[data-hero="…"]` 下，不改动工作台生成的 `assets/homepage-layout.css`；
+因此 photo / academic 模式下，工作台「首页排版」里拖动的姓名/链接位置不生效（字体、颜色、链接内容仍生效）。
 
 以下为雾化首页的说明。首页照片使用 `assets/portrait-222.webp`，滚动后的背景使用 `assets/background-333.webp`。原始大图、旧素材和论文源 PDF 已移到本地 `archive/`，清单见 `archive/README.md`。归档素材不上传至 GitHub Pages。
 照片只去除外围透明空白、等比例缩小和压缩；艺术效果通过 CSS alpha 蒙版叠加，不重绘照片。

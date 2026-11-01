@@ -33,5 +33,10 @@
     "page": "http://www.idc-robocon.org/idc2025_eng/index.html",
     "source": "http://www.idc-robocon.org/idc2025_eng/favicon.ico",
     "file": "robocon.png"
+  },
+  {
+    "id": "rowing",
+    "file": "rowing.svg",
+    "note": "Rowing pictogram drawn for this site in the same outline style as person.svg."
   }
 ]

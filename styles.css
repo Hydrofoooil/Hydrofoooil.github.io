@@ -84,6 +84,7 @@ html.has-hero-scene { height: 100%; overflow: hidden; overscroll-behavior: none;
 .profile-reference { color: #354c3d; font-weight: 600; text-decoration-color: #a3b4a3; text-decoration-thickness: 1px; text-underline-offset: .2em; }
 .profile-reference:hover, .profile-reference:focus-visible { color: #1f3828; text-decoration-color: currentColor; }
 .link-favicon { display: inline-block; width: 1em; height: 1em; margin-right: .35em; object-fit: contain; vertical-align: -.12em; border-radius: 2px; }
+.bio-entity { white-space: nowrap; }
 .research-topic { color: #354c3d; box-shadow: inset 0 -.4em #e6ece1; }
 .profile-sections { margin-top: 42px; }
 .profile-section { border-top: 1px solid #25352b26; padding-block: 24px; }
@@ -328,10 +329,11 @@ html.has-hero-scene { height: 100%; overflow: hidden; overscroll-behavior: none;
 }
 [data-hero="academic"] .hero-avatar img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 2px; }
 [data-hero="academic"] .second-page { min-height: 0; }
-[data-hero="academic"] .profile-shell { padding-top: clamp(48px, 6vw, 72px); }
+[data-hero="academic"] .hero > .biography { max-width: 960px; margin-inline: auto; padding: clamp(48px, 6vw, 72px) 32px 0; }
+[data-hero="academic"] .profile-shell { padding-top: 0; }
 @media (max-width: 760px) {
   [data-hero="academic"] .site-header { padding-inline: 24px; }
-  [data-hero="academic"] .profile-shell { padding-top: 44px; }
+  [data-hero="academic"] .hero > .biography { padding: 44px 24px 0; }
 }
 @media (max-width: 600px) {
   [data-hero="academic"] .site-header {
@@ -345,4 +347,154 @@ html.has-hero-scene { height: 100%; overflow: hidden; overscroll-behavior: none;
   [data-hero="academic"] .name-zh { font-size: 26px; letter-spacing: 6px; }
   [data-hero="academic"] .social-links { margin-top: 0; }
   [data-hero="academic"] .hero-avatar { width: clamp(96px, 28vw, 112px); padding: 4px; }
+}
+
+/* Photo hero (draft): background-333 full-bleed with the portrait on the left;
+   names with the links beside them (wrapping beside, never below, on desktop),
+   then the biography, share the right column. Scoped to
+   <html data-hero="photo">. Wide screens overlay the text on the radially washed photo
+   (the photo stays one viewport tall so the portrait never drifts under the text);
+   narrow or portrait screens stack everything below the photo. */
+.hero-backdrop, .hero-photo-cue { display: none; }
+[data-hero="photo"] .hero {
+  --hero-text-shift: 32px; /* about three characters of the 17px biography text */
+  display: grid;
+  grid-template-columns: minmax(0, 49fr) minmax(0, 51fr);
+  grid-template-rows: 1fr auto auto 1fr;
+  height: auto;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding: 72px clamp(24px, 6vw, 96px) 128px 0;
+}
+[data-hero="photo"] .hero-backdrop {
+  /* Where the portrait lands: the 3:2 photo covers the box widened by --shift and is
+     pulled left by --offset-x; the person is centred near (26%, 62%) of the photo. */
+  --bd-w: 100vw;
+  --bd-h: max(100svh, 560px);
+  --shift: 4vw;
+  --bp-y: .4;
+  --img-w: max(var(--bd-w) + var(--shift), var(--bd-h) * 1.5);
+  --img-h: calc(var(--img-w) / 1.5);
+  --offset-x: var(--shift);
+  --focus-x: calc(var(--img-w) * .26 - var(--offset-x));
+  --focus-y: calc(var(--img-h) * .62 - (var(--img-h) - var(--bd-h)) * var(--bp-y));
+  display: block;
+  position: absolute;
+  inset: 0 0 auto;
+  height: 100vh;
+  height: 100svh;
+  min-height: 560px;
+  z-index: -1;
+  background: url("assets/background-333.webp") no-repeat;
+  background-size: var(--img-w) auto;
+  background-position: calc(-1 * var(--offset-x)) calc(var(--bp-y) * 100%);
+}
+/* Bottom edge melts into the page across the full width. */
+[data-hero="photo"] .hero-backdrop::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 82%, #fafbf8 100%);
+}
+/* Radial wash: clear around the portrait, increasingly opaque with distance from it.
+   Left of the portrait it runs at 40% of the original right-side strength (.44 of the current one); the mask ramps to full over half a figure width. */
+[data-hero="photo"] .hero-backdrop::after {
+  --wash-mask: linear-gradient(90deg, rgb(0 0 0 / .44) var(--focus-x), #000 calc(var(--focus-x) + var(--img-w) * .14));
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(calc(var(--img-w) * .27) calc(var(--img-h) * .63) at var(--focus-x) var(--focus-y),
+      transparent 0 42%, #fafbf873 62%, #fafbf8ac 85%, #fafbf8cc 100%),
+    /* A second ellipse twice the size fades the far background further. */
+    radial-gradient(calc(var(--img-w) * .54) calc(var(--img-h) * 1.26) at var(--focus-x) var(--focus-y),
+      transparent 0 45%, #fafbf847 75%, #fafbf880 100%);
+  -webkit-mask-image: var(--wash-mask);
+  mask-image: var(--wash-mask);
+}
+[data-hero="photo"] .site-header {
+  grid-column: 2;
+  grid-row: 2;
+  position: relative;
+  inset: auto;
+  top: 10px; /* nudged down without moving the biography */
+  left: var(--hero-text-shift);
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  column-gap: clamp(20px, 2.6vw, 44px);
+  max-width: 640px;
+  padding: 0;
+  pointer-events: auto;
+}
+[data-hero="photo"] .identity { position: static; inset: auto; }
+[data-hero="photo"] .name-en,
+[data-hero="photo"] .name-zh { position: static; width: auto; max-width: none; }
+[data-hero="photo"] .name-en { font-size: 40px; }
+[data-hero="photo"] .name-zh { margin-top: 4px; font-size: 30px; letter-spacing: 7px; }
+[data-hero="photo"] .social-links {
+  position: static;
+  transform: none;
+  width: auto;
+  max-width: none;
+  margin-top: 0;
+  align-items: flex-start;
+}
+/* The buttons always sit beside the name (own grid column); a row that runs out of room wraps in place. */
+[data-hero="photo"] .social-row { justify-content: flex-start; }
+[data-hero="photo"] .social-arrow { display: none; }
+/* Nudged down without re-centring the column, so the name and links stay put. */
+[data-hero="photo"] .hero > .biography { grid-column: 2; grid-row: 3; position: relative; top: 16px; left: var(--hero-text-shift); max-width: 640px; margin-top: 32px; }
+/* Darker than the page body text so it keeps >= 5:1 contrast over the lightly washed photo. */
+[data-hero="photo"] .biography p { margin-bottom: 20px; color: #2b362f; font-size: 17px; line-height: 1.85; }
+[data-hero="photo"] .biography p:last-child { margin-bottom: 0; }
+[data-hero="photo"] .hero-photo-cue { display: grid; }
+/* Short windows: the column already runs to the fold, and a cue there would be cut in half. */
+@media (max-height: 839px) {
+  [data-hero="photo"] .hero { padding-top: 56px; padding-bottom: 56px; }
+  [data-hero="photo"] .hero-photo-cue { display: none; }
+}
+[data-hero="photo"] .second-page { min-height: 0; }
+[data-hero="photo"] .profile-shell { padding-top: clamp(16px, 3vw, 40px); }
+[data-hero="photo"] .profile-sections { margin-top: 0; }
+[data-hero="photo"] .profile-sections > .profile-section:first-child { border-top: 0; }
+/* Section headings in Georgia (system font on macOS/Windows), matching the name above. */
+[data-hero="photo"] .profile-section h2 { font-family: Georgia, "Noto Serif", serif; letter-spacing: 0; }
+@media (max-width: 900px), (max-aspect-ratio: 1/1) {
+  [data-hero="photo"] .hero { --hero-text-shift: 0px; display: block; min-height: 0; padding: 0; }
+  [data-hero="photo"] .hero-backdrop {
+    /* Stacked: the photo is just covered (no shift) and placed at 4% so the person sits centred. */
+    --bd-h: min(64svh, 120vw);
+    --shift: 0px;
+    --offset-x: calc((var(--img-w) - var(--bd-w)) * .04);
+    position: relative;
+    inset: auto;
+    z-index: auto;
+    height: min(64svh, 120vw);
+    min-height: 0;
+  }
+  [data-hero="photo"] .site-header,
+  [data-hero="photo"] .hero > .biography { max-width: 960px; margin-inline: auto; padding-inline: 32px; }
+  [data-hero="photo"] .site-header { top: 0; padding-top: 20px; }
+  [data-hero="photo"] .hero > .biography { top: 0; margin-top: 0; padding-top: 28px; }
+  [data-hero="photo"] .hero-photo-cue { display: none; }
+  [data-hero="photo"] .profile-shell { padding-top: 40px; }
+  [data-hero="photo"] .biography p { margin-bottom: 22px; color: #566059; font-size: 16px; line-height: 1.9; }
+}
+@media (max-width: 760px) {
+  [data-hero="photo"] .site-header,
+  [data-hero="photo"] .hero > .biography { padding-inline: 24px; }
+  [data-hero="photo"] .biography p { font-size: 15px; line-height: 1.85; }
+}
+@media (max-width: 1199px) {
+  [data-hero="photo"] .name-en { font-size: clamp(34px, 3.5vw, 40px); }
+  [data-hero="photo"] .name-zh { font-size: clamp(25px, 2.6vw, 30px); letter-spacing: 6px; }
+  [data-hero="photo"] .social-links { --link-gap: 8px; font-size: 13px; }
+  [data-hero="photo"] .social-link { gap: .45em; padding: .7em .8em; min-height: 40px; }
+}
+@media (max-width: 600px) {
+  [data-hero="photo"] .site-header { display: block; }
+  [data-hero="photo"] .name-en { font-size: min(36px, 10vw); }
+  [data-hero="photo"] .name-zh { font-size: 24px; letter-spacing: 6px; }
+  [data-hero="photo"] .social-links { margin-top: 20px; }
 }

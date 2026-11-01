@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN" data-hero="academic">
+<html lang="zh-CN" data-hero="photo">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,12 +8,12 @@
     <title>Ting Mao · 毛挺</title>
     <link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48">
     <link rel="icon" type="image/png" href="assets/github-avatar.png" sizes="192x192">
-    <link rel="stylesheet" href="styles.css?v=20261101-fixed-previews">
+    <link rel="stylesheet" href="styles.css?v=20261102-photo-hero">
     <link rel="stylesheet" href="assets/fonts/fonts.css">
     <link rel="stylesheet" href="assets/homepage-layout.css">
     <script src="assets/publications/preview.js?v=20261101-fixed-previews" defer></script>
     <script src="assets/contact.js" defer></script>
-    <script src="assets/hero-transition.js?v=20261101-hero-mode"></script>
+    <script src="assets/hero-transition.js?v=20261102-photo-hero"></script>
   </head>
   <body>
     <main>
@@ -25,6 +25,7 @@
       </div>
       </template>
       <section class="hero" id="home" aria-label="首页">
+      <div class="hero-backdrop" role="img" aria-label="我站在一片蓝色花海前，身后是草坪和仿古建筑。"></div>
     <header class="site-header">
       <h1 class="identity">
         <span class="name-en" lang="en">Ting Mao</span>
@@ -44,6 +45,19 @@
           alt="我戴着墨镜，背景是盛开的樱花树。" fetchpriority="high">
       </figure>
     </header>
+      <div class="biography" id="biography">
+        <p class="bio-lead">Hi! I'm a third-year undergraduate studying Robotics Engineering (Honors Program) at <a class="profile-reference" href="https://www.zju.edu.cn/english" target="_blank" rel="noopener noreferrer"><img class="link-favicon" src="assets/favicons/zju-eagle.png" width="16" height="16" alt="" aria-hidden="true" loading="lazy" decoding="async">Zhejiang University</a>.</p>
+        <p>I began my robotics research at <a class="profile-reference" href="https://scalelab-sjtu.github.io/" target="_blank" rel="noopener noreferrer"><img class="link-favicon" src="assets/favicons/scalelab-logo.webp" width="16" height="16" alt="" aria-hidden="true" loading="lazy" decoding="async">SJTU ScaleLab</a>, led by <a class="profile-reference" href="https://yaomarkmu.github.io/" target="_blank" rel="noopener noreferrer"><img class="link-favicon" src="assets/favicons/person.svg" width="16" height="16" alt="" aria-hidden="true" loading="lazy" decoding="async">Prof. Yao Mu</a>, in fall 2025, where I currently work as a research intern. Since October 2026, I have also been working as a research intern at <a class="profile-reference" href="https://www.kinetixai.tech/en" target="_blank" rel="noopener noreferrer"><img class="link-favicon" src="assets/favicons/kinetix.png" width="16" height="16" alt="" aria-hidden="true" loading="lazy" decoding="async">Kinetix AI</a>.</p>
+        <p>My current research interests lie in <span class="research-topic">dexterous manipulation</span> and <span class="research-topic">agentic robotics</span>, with a focus on building robotic systems capable of interacting with the physical world while achieving human-level dexterity.</p>
+        <p>Outside of research, I enjoy staying active, especially through rowing, running, and table tennis. I'm also a member of the <span class="bio-entity"><img class="link-favicon" src="assets/favicons/rowing.svg" width="16" height="16" alt="" aria-hidden="true" loading="lazy" decoding="async">ZJU Rowing Team</span>. Apart from that, I enjoy connecting with fellow robotics enthusiasts and previously served as president of the <a class="profile-reference" href="http://www.cse.zju.edu.cn/cxcy/73169/list.htm" target="_blank" rel="noopener noreferrer"><img class="link-favicon" src="ZJUSRA_LOGO.jpg" width="16" height="16" alt="" aria-hidden="true" loading="lazy" decoding="async"><strong>ZJU Student Robot Association (ZJUSRA)</strong></a>.</p>
+        <p>I'd love to make new friends, so feel free to <a class="profile-reference" href="#wechat-contact" data-wechat-contact>add me on WeChat</a>!</p>
+      </div>
+      <a class="scroll-cue hero-photo-cue" href="#second-page" aria-label="向下滚动，查看个人介绍" title="Know more about me">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 5v14"/>
+          <path d="m19 12-7 7-7-7"/>
+        </svg>
+      </a>
       <template data-hero-fog>
       <figure class="portrait">
         <img class="splash-photo" src="assets/portrait-222.webp" width="2528" height="1673"
@@ -60,14 +74,6 @@
       <section class="second-page" id="second-page" aria-label="About" lang="en" tabindex="-1">
         <div class="profile-shell">
           <div class="profile-content">
-            <div class="biography" id="biography">
-              <p class="bio-lead">Hi! I'm a third-year undergraduate studying Robotics Engineering (Honors Program) at <a class="profile-reference" href="https://www.zju.edu.cn/english" target="_blank" rel="noopener noreferrer"><img class="link-favicon" src="assets/favicons/zju-eagle.png" width="16" height="16" alt="" aria-hidden="true" loading="lazy" decoding="async">Zhejiang University</a>.</p>
-              <p>I began my robotics research at <a class="profile-reference" href="https://scalelab-sjtu.github.io/" target="_blank" rel="noopener noreferrer"><img class="link-favicon" src="assets/favicons/scalelab-logo.webp" width="16" height="16" alt="" aria-hidden="true" loading="lazy" decoding="async">SJTU ScaleLab</a>, led by <a class="profile-reference" href="https://yaomarkmu.github.io/" target="_blank" rel="noopener noreferrer"><img class="link-favicon" src="assets/favicons/person.svg" width="16" height="16" alt="" aria-hidden="true" loading="lazy" decoding="async">Prof. Yao Mu</a>, in fall 2025, where I currently work as a research intern. Since October 2026, I have also been working as a research intern at <a class="profile-reference" href="https://www.kinetixai.tech/en" target="_blank" rel="noopener noreferrer"><img class="link-favicon" src="assets/favicons/kinetix.png" width="16" height="16" alt="" aria-hidden="true" loading="lazy" decoding="async">Kinetix AI</a>.</p>
-              <p>My current research interests lie in <span class="research-topic">dexterous manipulation</span> and <span class="research-topic">agentic robotics</span>, with a focus on building robotic systems capable of interacting with the physical world while achieving human-level dexterity.</p>
-              <p>Outside of research, I enjoy staying active, especially through rowing, running, and table tennis. I'm also a member of the ZJU Rowing Team. Apart from that, I also enjoy connecting with fellow robotics enthusiasts and previously served as president of the <a class="profile-reference" href="http://www.cse.zju.edu.cn/cxcy/73169/list.htm" target="_blank" rel="noopener noreferrer"><img class="link-favicon" src="ZJUSRA_LOGO.jpg" width="16" height="16" alt="" aria-hidden="true" loading="lazy" decoding="async"><strong>ZJU Student Robot Association (ZJUSRA)</strong></a>.</p>
-              <p>I'd love to make new friends, so feel free to <a class="profile-reference" href="#wechat-contact" data-wechat-contact>add me on WeChat</a>!</p>
-            </div>
-
             <div class="profile-sections">
               <section class="profile-section" id="research-experience" aria-labelledby="research-heading">
                 <h2 id="research-heading">Research Experience</h2>

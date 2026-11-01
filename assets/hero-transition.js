@@ -5,10 +5,13 @@
 (() => {
   const root = document.documentElement;
   const params = new URLSearchParams(location.search);
-  if (['fog', 'academic'].includes(params.get('hero'))) root.dataset.hero = params.get('hero');
+  if (['fog', 'academic', 'photo'].includes(params.get('hero'))) root.dataset.hero = params.get('hero');
   if (root.dataset.hero !== 'fog') return;
   const unpark = () => {
     for (const template of document.querySelectorAll('template[data-hero-fog]')) template.replaceWith(template.content);
+    // The biography lives in the hero for the other modes; the fog scene animates it with the profile.
+    const biography = document.getElementById('biography');
+    if (biography) document.querySelector('.profile-content')?.prepend(biography);
   };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', unpark, { once: true });
   else unpark();

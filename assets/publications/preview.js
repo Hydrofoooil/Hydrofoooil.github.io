@@ -1,22 +1,5 @@
 // Keep the duplicated filmstrip in sync for a seamless horizontal loop.
 for (const preview of document.querySelectorAll('.publication-preview')) {
-  const publication = preview.closest('.publication');
-  const details = publication.querySelector('.publication-details');
-  const desktop = matchMedia('(min-width: 960px)');
-  const alignPreview = () => {
-    if (!desktop.matches) {
-      publication.style.removeProperty('--publication-size');
-      return;
-    }
-    const size = details.getBoundingClientRect().height;
-    if (Math.abs(preview.getBoundingClientRect().width - size) > .25) {
-      publication.style.setProperty('--publication-size', `${size}px`);
-    }
-  };
-  // The text determines the square's size, including after fonts/window changes.
-  new ResizeObserver(() => requestAnimationFrame(alignPreview)).observe(details);
-  desktop.addEventListener('change', alignPreview);
-  alignPreview();
   const videos = [...preview.querySelectorAll('video')];
   if (!videos.length) continue;
   const motion = matchMedia('(prefers-reduced-motion: reduce)');

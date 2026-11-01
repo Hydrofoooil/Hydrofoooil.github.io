@@ -97,7 +97,7 @@ html.has-hero-scene { height: 100%; overflow: hidden; overscroll-behavior: none;
   font-weight: 700;
   letter-spacing: -.015em;
 }
-.publication { display: grid; grid-template-columns: minmax(0, 1fr) var(--publication-size, 180px); align-items: start; gap: 28px; margin-top: 24px; }
+.publication { display: grid; grid-template-columns: minmax(0, 1fr) 180px; align-items: start; gap: 28px; margin-top: 24px; }
 .research-experience-entry { display: grid; grid-template-columns: 80px minmax(0, 1fr); align-items: center; gap: 24px; margin-top: 24px; }
 .experience-icon { display: grid; place-items: center; aspect-ratio: 1; border-radius: 8px; background: #e6ece1; color: #354c3d; font-family: "TM Garamond", Georgia, serif; font-size: 50px; line-height: 1; }
 .experience-icon-brand { background: #fff; }

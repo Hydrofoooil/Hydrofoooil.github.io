@@ -392,6 +392,9 @@ html.has-hero-scene { height: 100%; overflow: hidden; overscroll-behavior: none;
   background: url("assets/background-333.webp") no-repeat;
   background-size: var(--img-w) auto;
   background-position: calc(-1 * var(--offset-x)) calc(var(--bp-y) * 100%);
+  /* Hard rectangular shadows on both sides (no blur), shown only when the window is wider than the stage. */
+  --edge-w: clamp(0px, (100vw - var(--stage-w)) / 2, 8px);
+  box-shadow: calc(-1 * var(--edge-w)) 0 0 rgb(37 53 43 / .14), var(--edge-w) 0 0 rgb(37 53 43 / .14);
 }
 /* Bottom edge melts into the page across the full width. */
 [data-hero="photo"] .hero-backdrop::before {
@@ -475,6 +478,7 @@ html.has-hero-scene { height: 100%; overflow: hidden; overscroll-behavior: none;
     inset: auto;
     z-index: auto;
     margin-inline: auto;
+    box-shadow: none;
     height: min(64svh, 120vw);
     min-height: 0;
   }

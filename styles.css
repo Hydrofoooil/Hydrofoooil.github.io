@@ -356,53 +356,64 @@ html.has-hero-scene { height: 100%; overflow: hidden; overscroll-behavior: none;
    (the photo stays one viewport tall so the portrait never drifts under the text);
    narrow or portrait screens stack everything below the photo. */
 .hero-backdrop, .hero-photo-cue { display: none; }
-/* The photo is a fixed-width stage centred on the page; wider windows show page colour beside it. */
-[data-hero="photo"] { --stage-w: 1200px; }
+/* The photo is a rounded card of fixed width, centred on the page: 24px below the top, at least a
+   16px gutter on narrow windows, crisp edges with a hairline outline. The card grows with the text,
+   so the text never runs past its bottom edge. */
+[data-hero="photo"] { --stage-w: 1200px; --card-top: 24px; --card-gutter: 16px; }
 [data-hero="photo"] .hero {
   --hero-text-shift: 32px; /* about three characters of the 17px biography text */
-  --stage-side: max(0px, (100% - var(--stage-w)) / 2);
-  /* Stage size: fixed width; height is the viewport, capped at the photo's own 3:2 height
-     so tall windows never enlarge the photo. */
-  --bd-w: min(100vw, var(--stage-w));
-  --shift: calc(var(--bd-w) * .04);
-  --bd-h: min(max(100svh, 560px), (var(--bd-w) + var(--shift)) / 1.5);
+  --stage-side: max(var(--card-gutter), (100% - var(--stage-w)) / 2);
+  /* Preferred card height: the window less room above and below, capped at the photo's own
+     3:2 height so tall windows never enlarge the photo. */
+  --card-w: min(100vw - 2 * var(--card-gutter), var(--stage-w));
+  --card-h: min(max(100svh - 2 * var(--card-top), 520px), var(--card-w) * 1.04 / 1.5);
   display: grid;
   grid-template-columns: minmax(0, 49fr) minmax(0, 51fr);
   grid-template-rows: 1fr auto auto 1fr;
   height: auto;
-  min-height: var(--bd-h);
-  padding: 72px calc(var(--stage-side) + clamp(24px, 4vw, 64px)) 128px var(--stage-side);
+  min-height: calc(var(--card-top) + var(--card-h));
+  /* Right padding always leaves room for the text shift plus a 16px margin inside the card. */
+  padding: 72px calc(var(--stage-side) + max(clamp(24px, 4vw, 64px), var(--hero-text-shift) + 16px)) 128px var(--stage-side);
 }
 [data-hero="photo"] .hero-backdrop {
-  /* Where the portrait lands: the 3:2 photo covers the box widened by --shift and is
-     pulled left by --offset-x; the person is centred near (26%, 62%) of the photo. */
+  display: block;
+  position: absolute;
+  top: var(--card-top);
+  right: var(--stage-side);
+  bottom: 0;
+  left: var(--stage-side);
+  z-index: -1;
+  container-type: size; /* the photo sizes itself from the card via cqw/cqh */
+  overflow: hidden;
+  border-radius: 16px;
+  background: #fafbf8;
+  box-shadow: 0 0 0 1px rgb(37 53 43 / .1);
+}
+[data-hero="photo"] .hero-backdrop-photo {
+  /* Where the portrait lands: the 3:2 photo covers the card widened by --shift and is pulled
+     left by --offset-x; the person is centred near (26%, 62%) of the photo. The photo covers
+     the card's height only up to 1.15x the preferred card height: when long text makes the card
+     taller still, the photo keeps its size (the person never grows into the text) and its bottom
+     fades into the card. */
+  --bd-w: 100cqw;
+  --bd-h: min(100cqh, var(--card-h) * 1.15);
+  --shift: calc(100cqw * .04);
   --bp-y: .4;
   --img-w: max(var(--bd-w) + var(--shift), var(--bd-h) * 1.5);
   --img-h: calc(var(--img-w) / 1.5);
   --offset-x: var(--shift);
+  --photo-y: min(0px, (100cqh - var(--img-h)) * var(--bp-y));
+  --photo-bottom: calc(var(--img-h) + var(--photo-y));
+  --photo-fade: clamp(0px, (100cqh - var(--photo-bottom)) * 3, 140px);
   --focus-x: calc(var(--img-w) * .26 - var(--offset-x));
-  --focus-y: calc(var(--img-h) * .62 - (var(--img-h) - var(--bd-h)) * var(--bp-y));
-  display: block;
-  position: absolute;
-  top: 0;
-  left: max(0px, (100% - var(--stage-w)) / 2);
-  width: min(100%, var(--stage-w));
-  height: var(--bd-h);
-  z-index: -1;
-  /* Narrow fade on both side edges when the window is wider than the stage (none otherwise). */
-  --feather: clamp(0px, (100vw - var(--stage-w)) / 2, 24px);
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 var(--feather), #000 calc(100% - var(--feather)), transparent);
-  mask-image: linear-gradient(90deg, transparent, #000 var(--feather), #000 calc(100% - var(--feather)), transparent);
-}
-/* Photo plus wash, faded out together at the bottom. */
-[data-hero="photo"] .hero-backdrop-photo {
+  --focus-y: calc(var(--img-h) * .62 + var(--photo-y));
   position: absolute;
   inset: 0;
   background: url("assets/background-333.webp") no-repeat;
   background-size: var(--img-w) auto;
-  background-position: calc(-1 * var(--offset-x)) calc(var(--bp-y) * 100%);
-  -webkit-mask-image: linear-gradient(to bottom, #000 82%, transparent);
-  mask-image: linear-gradient(to bottom, #000 82%, transparent);
+  background-position: calc(-1 * var(--offset-x)) var(--photo-y);
+  -webkit-mask-image: linear-gradient(to bottom, #000 calc(var(--photo-bottom) - var(--photo-fade)), transparent var(--photo-bottom));
+  mask-image: linear-gradient(to bottom, #000 calc(var(--photo-bottom) - var(--photo-fade)), transparent var(--photo-bottom));
 }
 /* Radial wash: clear around the portrait, increasingly opaque with distance from it.
    Left of the portrait it runs at 40% of the original right-side strength (.44 of the current one); the mask ramps to full over half a figure width. */
@@ -463,7 +474,7 @@ html.has-hero-scene { height: 100%; overflow: hidden; overscroll-behavior: none;
   [data-hero="photo"] .hero-photo-cue { display: none; }
 }
 [data-hero="photo"] .second-page { min-height: 0; }
-[data-hero="photo"] .profile-shell { padding-top: clamp(16px, 3vw, 40px); }
+[data-hero="photo"] .profile-shell { padding-top: clamp(32px, 4vw, 56px); }
 [data-hero="photo"] .profile-sections { margin-top: 0; }
 [data-hero="photo"] .profile-sections > .profile-section:first-child { border-top: 0; }
 /* Section headings in Georgia (system font on macOS/Windows), matching the name above. */
@@ -471,17 +482,15 @@ html.has-hero-scene { height: 100%; overflow: hidden; overscroll-behavior: none;
 @media (max-width: 900px), (max-aspect-ratio: 1/1) {
   [data-hero="photo"] .hero { --hero-text-shift: 0px; display: block; min-height: 0; padding: 0; }
   [data-hero="photo"] .hero-backdrop {
-    /* Stacked: the photo is just covered (no shift) and placed at 4% so the person sits centred. */
-    --bd-h: min(64svh, 120vw);
-    --shift: 0px;
-    --offset-x: calc((var(--img-w) - var(--bd-w)) * .04);
     position: relative;
     inset: auto;
     z-index: auto;
-    margin-inline: auto;
+    width: min(100% - 2 * var(--card-gutter), var(--stage-w));
     height: min(64svh, 120vw);
-    min-height: 0;
+    margin: var(--card-gutter) auto 0;
   }
+  /* Stacked: the photo is just covered (no shift) and placed at 4% so the person sits centred. */
+  [data-hero="photo"] .hero-backdrop-photo { --bd-h: 100cqh; --shift: 0px; --offset-x: calc((var(--img-w) - var(--bd-w)) * .04); }
   [data-hero="photo"] .site-header,
   [data-hero="photo"] .hero > .biography { max-width: 960px; margin-inline: auto; padding-inline: 32px; }
   [data-hero="photo"] .site-header { top: 0; padding-top: 20px; }

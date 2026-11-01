@@ -376,7 +376,7 @@ html.has-hero-scene { height: 100%; overflow: hidden; overscroll-behavior: none;
 [data-hero="photo"] .hero-backdrop {
   /* Where the portrait lands: the 3:2 photo covers the box widened by --shift and is
      pulled left by --offset-x; the person is centred near (26%, 62%) of the photo. */
-  --feather: clamp(0px, (100vw - var(--stage-w)) / 2, 96px);
+  --feather: clamp(0px, (100vw - var(--stage-w)) / 2, 40px);
   --bp-y: .4;
   --img-w: max(var(--bd-w) + var(--shift), var(--bd-h) * 1.5);
   --img-h: calc(var(--img-w) / 1.5);

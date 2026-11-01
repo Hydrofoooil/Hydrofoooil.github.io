@@ -389,23 +389,32 @@ html.has-hero-scene { height: 100%; overflow: hidden; overscroll-behavior: none;
   width: min(100%, var(--stage-w));
   height: var(--bd-h);
   z-index: -1;
-  background: url("assets/background-333.webp") no-repeat;
-  background-size: var(--img-w) auto;
-  background-position: calc(-1 * var(--offset-x)) calc(var(--bp-y) * 100%);
-  /* Soft card shadows on both sides, full height. When the stage spans the window they fall
-     outside it and are clipped by the hero, so they only show on wider windows. */
-  box-shadow: -14px 0 24px -12px rgb(37 53 43 / .35), 14px 0 24px -12px rgb(37 53 43 / .35);
 }
-/* Bottom edge melts into the page across the full width. */
+/* Slide-style outer shadow: a same-shaped caster (opaque, fading out where the photo does) casts a
+   shadow offset down-right at 45°. The caster itself and any shadow inside the photo's box are
+   clipped away, so the shadow only shows outside the photo and never greys its faded bottom. */
 [data-hero="photo"] .hero-backdrop::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, transparent 82%, #fafbf8 100%);
+  background: linear-gradient(to bottom, #000 82%, transparent);
+  filter: drop-shadow(10px 10px 12px rgb(30 40 34 / .3));
+  clip-path: polygon(100% 0, calc(100% + 60px) 0, calc(100% + 60px) calc(100% + 60px), 0 calc(100% + 60px), 0 100%, 100% 100%);
+  pointer-events: none;
+}
+/* Photo plus wash, faded out together at the bottom. */
+[data-hero="photo"] .hero-backdrop-photo {
+  position: absolute;
+  inset: 0;
+  background: url("assets/background-333.webp") no-repeat;
+  background-size: var(--img-w) auto;
+  background-position: calc(-1 * var(--offset-x)) calc(var(--bp-y) * 100%);
+  -webkit-mask-image: linear-gradient(to bottom, #000 82%, transparent);
+  mask-image: linear-gradient(to bottom, #000 82%, transparent);
 }
 /* Radial wash: clear around the portrait, increasingly opaque with distance from it.
    Left of the portrait it runs at 40% of the original right-side strength (.44 of the current one); the mask ramps to full over half a figure width. */
-[data-hero="photo"] .hero-backdrop::after {
+[data-hero="photo"] .hero-backdrop-photo::after {
   --wash-mask: linear-gradient(90deg, rgb(0 0 0 / .44) var(--focus-x), #000 calc(var(--focus-x) + var(--img-w) * .14));
   content: "";
   position: absolute;
@@ -469,6 +478,7 @@ html.has-hero-scene { height: 100%; overflow: hidden; overscroll-behavior: none;
 [data-hero="photo"] .profile-section h2 { font-family: Georgia, "Noto Serif", serif; letter-spacing: 0; }
 @media (max-width: 900px), (max-aspect-ratio: 1/1) {
   [data-hero="photo"] .hero { --hero-text-shift: 0px; display: block; min-height: 0; padding: 0; }
+  [data-hero="photo"] .hero-backdrop::before { display: none; }
   [data-hero="photo"] .hero-backdrop {
     /* Stacked: the photo is just covered (no shift) and placed at 4% so the person sits centred. */
     --bd-h: min(64svh, 120vw);
@@ -478,7 +488,6 @@ html.has-hero-scene { height: 100%; overflow: hidden; overscroll-behavior: none;
     inset: auto;
     z-index: auto;
     margin-inline: auto;
-    box-shadow: none;
     height: min(64svh, 120vw);
     min-height: 0;
   }

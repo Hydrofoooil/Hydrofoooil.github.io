@@ -349,29 +349,34 @@ html.has-hero-scene { height: 100%; overflow: hidden; overscroll-behavior: none;
   [data-hero="academic"] .hero-avatar { width: clamp(96px, 28vw, 112px); padding: 4px; }
 }
 
-/* Photo hero (draft): background-333 full-bleed with the portrait on the left;
+/* Photo hero: background-333 on a fixed-width stage with the portrait on the left;
    names with the links beside them (wrapping beside, never below, on desktop),
    then the biography, share the right column. Scoped to
    <html data-hero="photo">. Wide screens overlay the text on the radially washed photo
    (the photo stays one viewport tall so the portrait never drifts under the text);
    narrow or portrait screens stack everything below the photo. */
 .hero-backdrop, .hero-photo-cue { display: none; }
+/* The photo is a fixed-width stage centred on the page; wider windows show page colour beside it. */
+[data-hero="photo"] { --stage-w: 1200px; }
 [data-hero="photo"] .hero {
   --hero-text-shift: 32px; /* about three characters of the 17px biography text */
+  --stage-side: max(0px, (100% - var(--stage-w)) / 2);
+  /* Stage size: fixed width; height is the viewport, capped at the photo's own 3:2 height
+     so tall windows never enlarge the photo. */
+  --bd-w: min(100vw, var(--stage-w));
+  --shift: calc(var(--bd-w) * .04);
+  --bd-h: min(max(100svh, 560px), (var(--bd-w) + var(--shift)) / 1.5);
   display: grid;
   grid-template-columns: minmax(0, 49fr) minmax(0, 51fr);
   grid-template-rows: 1fr auto auto 1fr;
   height: auto;
-  min-height: 100vh;
-  min-height: 100svh;
-  padding: 72px clamp(24px, 6vw, 96px) 128px 0;
+  min-height: var(--bd-h);
+  padding: 72px calc(var(--stage-side) + clamp(24px, 4vw, 64px)) 128px var(--stage-side);
 }
 [data-hero="photo"] .hero-backdrop {
   /* Where the portrait lands: the 3:2 photo covers the box widened by --shift and is
      pulled left by --offset-x; the person is centred near (26%, 62%) of the photo. */
-  --bd-w: 100vw;
-  --bd-h: max(100svh, 560px);
-  --shift: 4vw;
+  --feather: clamp(0px, (100vw - var(--stage-w)) / 2, 96px);
   --bp-y: .4;
   --img-w: max(var(--bd-w) + var(--shift), var(--bd-h) * 1.5);
   --img-h: calc(var(--img-w) / 1.5);
@@ -380,14 +385,17 @@ html.has-hero-scene { height: 100%; overflow: hidden; overscroll-behavior: none;
   --focus-y: calc(var(--img-h) * .62 - (var(--img-h) - var(--bd-h)) * var(--bp-y));
   display: block;
   position: absolute;
-  inset: 0 0 auto;
-  height: 100vh;
-  height: 100svh;
-  min-height: 560px;
+  top: 0;
+  left: max(0px, (100% - var(--stage-w)) / 2);
+  width: min(100%, var(--stage-w));
+  height: var(--bd-h);
   z-index: -1;
   background: url("assets/background-333.webp") no-repeat;
   background-size: var(--img-w) auto;
   background-position: calc(-1 * var(--offset-x)) calc(var(--bp-y) * 100%);
+  /* Soft side edges when the stage is narrower than the window (no feather otherwise). */
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 var(--feather), #000 calc(100% - var(--feather)), transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 var(--feather), #000 calc(100% - var(--feather)), transparent);
 }
 /* Bottom edge melts into the page across the full width. */
 [data-hero="photo"] .hero-backdrop::before {
@@ -470,6 +478,7 @@ html.has-hero-scene { height: 100%; overflow: hidden; overscroll-behavior: none;
     position: relative;
     inset: auto;
     z-index: auto;
+    margin-inline: auto;
     height: min(64svh, 120vw);
     min-height: 0;
   }

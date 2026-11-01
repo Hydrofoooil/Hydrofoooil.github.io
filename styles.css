@@ -393,24 +393,6 @@ html.has-hero-scene { height: 100%; overflow: hidden; overscroll-behavior: none;
   background-size: var(--img-w) auto;
   background-position: calc(-1 * var(--offset-x)) calc(var(--bp-y) * 100%);
 }
-/* Side shadows at the stage edges, drawn on a slightly wider plate behind the photo.
-   Only shows when the window is wider than the stage; fades out with the photo's bottom edge. */
-[data-hero="photo"] .hero::before {
-  --shadow-w: clamp(0px, var(--stage-side), 28px);
-  content: "";
-  position: absolute;
-  top: 0;
-  left: calc(var(--stage-side) - var(--shadow-w));
-  width: calc(min(100%, var(--stage-w)) + 2 * var(--shadow-w));
-  height: var(--bd-h);
-  z-index: -2;
-  pointer-events: none;
-  background:
-    linear-gradient(to left, rgb(37 53 43 / .2), rgb(37 53 43 / .08) 30%, rgb(37 53 43 / .02) 70%, transparent) left top / var(--shadow-w) 100% no-repeat,
-    linear-gradient(to right, rgb(37 53 43 / .2), rgb(37 53 43 / .08) 30%, rgb(37 53 43 / .02) 70%, transparent) right top / var(--shadow-w) 100% no-repeat;
-  -webkit-mask-image: linear-gradient(to bottom, #000 82%, transparent);
-  mask-image: linear-gradient(to bottom, #000 82%, transparent);
-}
 /* Bottom edge melts into the page across the full width. */
 [data-hero="photo"] .hero-backdrop::before {
   content: "";
@@ -484,7 +466,6 @@ html.has-hero-scene { height: 100%; overflow: hidden; overscroll-behavior: none;
 [data-hero="photo"] .profile-section h2 { font-family: Georgia, "Noto Serif", serif; letter-spacing: 0; }
 @media (max-width: 900px), (max-aspect-ratio: 1/1) {
   [data-hero="photo"] .hero { --hero-text-shift: 0px; display: block; min-height: 0; padding: 0; }
-  [data-hero="photo"] .hero::before { display: none; }
   [data-hero="photo"] .hero-backdrop {
     /* Stacked: the photo is just covered (no shift) and placed at 4% so the person sits centred. */
     --bd-h: min(64svh, 120vw);

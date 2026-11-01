@@ -389,18 +389,10 @@ html.has-hero-scene { height: 100%; overflow: hidden; overscroll-behavior: none;
   width: min(100%, var(--stage-w));
   height: var(--bd-h);
   z-index: -1;
-}
-/* Slide-style outer shadow: a same-shaped caster (opaque, fading out where the photo does) casts a
-   shadow offset down-right at 45°. The caster itself and any shadow inside the photo's box are
-   clipped away, so the shadow only shows outside the photo and never greys its faded bottom. */
-[data-hero="photo"] .hero-backdrop::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom, #000 82%, transparent);
-  filter: drop-shadow(10px 10px 12px rgb(30 40 34 / .3));
-  clip-path: polygon(100% 0, calc(100% + 60px) 0, calc(100% + 60px) calc(100% + 60px), 0 calc(100% + 60px), 0 100%, 100% 100%);
-  pointer-events: none;
+  /* Narrow fade on both side edges when the window is wider than the stage (none otherwise). */
+  --feather: clamp(0px, (100vw - var(--stage-w)) / 2, 24px);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 var(--feather), #000 calc(100% - var(--feather)), transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 var(--feather), #000 calc(100% - var(--feather)), transparent);
 }
 /* Photo plus wash, faded out together at the bottom. */
 [data-hero="photo"] .hero-backdrop-photo {
@@ -478,7 +470,6 @@ html.has-hero-scene { height: 100%; overflow: hidden; overscroll-behavior: none;
 [data-hero="photo"] .profile-section h2 { font-family: Georgia, "Noto Serif", serif; letter-spacing: 0; }
 @media (max-width: 900px), (max-aspect-ratio: 1/1) {
   [data-hero="photo"] .hero { --hero-text-shift: 0px; display: block; min-height: 0; padding: 0; }
-  [data-hero="photo"] .hero-backdrop::before { display: none; }
   [data-hero="photo"] .hero-backdrop {
     /* Stacked: the photo is just covered (no shift) and placed at 4% so the person sits centred. */
     --bd-h: min(64svh, 120vw);

@@ -356,32 +356,52 @@ html.has-hero-scene { height: 100%; overflow: hidden; overscroll-behavior: none;
    (the photo stays one viewport tall so the portrait never drifts under the text);
    narrow or portrait screens stack everything below the photo. */
 .hero-backdrop, .hero-photo-cue { display: none; }
-/* The photo is a rounded card of fixed width, centred on the page: 24px below the top, at least a
-   16px gutter on narrow windows, crisp edges with a hairline outline. The card grows with the text,
-   so the text never runs past its bottom edge. */
-[data-hero="photo"] { --stage-w: 1200px; --card-top: 24px; --card-gutter: 16px; }
+/* The photo is a rounded card (at most 1200px wide) centred in the window both ways: the first
+   screen is one window tall and the card fits inside it with an even gap all round
+   (--card-gap, 16-32px, scaling with the window), crisp edges with a hairline outline.
+   The card grows with the text, so the text never runs past its bottom edge. On short windows
+   assets/photo-card-fit.js shrinks the text (--text-fit, down to 80%) until the card fits;
+   a card still taller than the window starts one gap below the top. */
+[data-hero="photo"] { --stage-w: 1200px; --card-gap: clamp(16px, 2.5vmin, 32px); }
 [data-hero="photo"] .hero {
   --hero-text-shift: 32px; /* about three characters of the 17px biography text */
-  --stage-side: max(var(--card-gutter), (100% - var(--stage-w)) / 2);
-  /* Preferred card height: the window less room above and below, capped at the photo's own
-     3:2 height so tall windows never enlarge the photo. */
-  --card-w: min(100vw - 2 * var(--card-gutter), var(--stage-w));
-  --card-h: min(max(100svh - 2 * var(--card-top), 520px), var(--card-w) * 1.04 / 1.5);
+  /* Inner margins: above and below the text, and right of it (room for the text shift plus 16px). */
+  --card-pad: clamp(32px, 5.5svh, 56px);
+  --text-inset: max(clamp(24px, 4vw, 64px), var(--hero-text-shift) + 16px);
+  /* Preferred card height: the window less the gap above and below, capped at the photo's own
+     3:2 height so tall windows never enlarge the photo (the card then floats mid-window). */
+  --card-w: min(100vw - 2 * var(--card-gap), var(--stage-w));
+  --card-h: min(max(100svh - 2 * var(--card-gap), 520px), var(--card-w) * 1.04 / 1.5);
+  /* Rows: flexible gap, card padding, names, biography, card padding, flexible gap. The two
+     flexible rows share the window's leftover height equally, which centres the card; the card
+     covers the four middle rows. An empty ::before spanning those rows gives the card its
+     min-height; when that exceeds the text, the extra is shared equally by the two auto rows;
+     the names sit at the bottom of theirs and the biography at the top of its own, so the text
+     stays centred in the card. */
   display: grid;
-  grid-template-columns: minmax(0, 49fr) minmax(0, 51fr);
-  grid-template-rows: 1fr auto auto 1fr;
+  grid-template-columns: minmax(0, 49fr) minmax(0, 51fr) var(--text-inset);
+  /* The padding rows absorb the names' 10px and the biography's 16px downward nudges, so the
+     text block still sits centred in the card. */
+  grid-template-rows: minmax(0, 1fr) calc(var(--card-pad) - 10px) auto auto calc(var(--card-pad) + 16px) minmax(0, 1fr);
   height: auto;
-  min-height: calc(var(--card-top) + var(--card-h));
-  /* Right padding always leaves room for the text shift plus a 16px margin inside the card. */
-  padding: 72px calc(var(--stage-side) + max(clamp(24px, 4vw, 64px), var(--hero-text-shift) + 16px)) 128px var(--stage-side);
+  min-height: 100vh;
+  min-height: 100svh;
+  padding: var(--card-gap) max(var(--card-gap), (100% - var(--stage-w)) / 2);
 }
+[data-hero="photo"] .hero::before {
+  content: "";
+  grid-row: 2 / 6;
+  grid-column: 1 / -1;
+  min-height: var(--card-h);
+}
+/* Absolutely positioned in its grid area (rows 2-5), so the card has a definite size for the
+   photo's container units. */
 [data-hero="photo"] .hero-backdrop {
   display: block;
+  grid-row: 2 / 6;
+  grid-column: 1 / -1;
   position: absolute;
-  top: var(--card-top);
-  right: var(--stage-side);
-  bottom: 0;
-  left: var(--stage-side);
+  inset: 0;
   z-index: -1;
   container-type: size; /* the photo sizes itself from the card via cqw/cqh */
   overflow: hidden;
@@ -433,11 +453,13 @@ html.has-hero-scene { height: 100%; overflow: hidden; overscroll-behavior: none;
 }
 [data-hero="photo"] .site-header {
   grid-column: 2;
-  grid-row: 2;
+  grid-row: 3;
+  zoom: var(--text-fit, 1);
   position: relative;
   inset: auto;
   top: 10px; /* nudged down without moving the biography */
   left: var(--hero-text-shift);
+  align-self: end;
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
   align-items: center;
@@ -463,15 +485,25 @@ html.has-hero-scene { height: 100%; overflow: hidden; overscroll-behavior: none;
 [data-hero="photo"] .social-row { justify-content: flex-start; }
 [data-hero="photo"] .social-arrow { display: none; }
 /* Nudged down without re-centring the column, so the name and links stay put. */
-[data-hero="photo"] .hero > .biography { grid-column: 2; grid-row: 3; position: relative; top: 16px; left: var(--hero-text-shift); max-width: 640px; margin-top: 32px; }
+[data-hero="photo"] .hero > .biography { grid-column: 2; grid-row: 4; align-self: start; zoom: var(--text-fit, 1); position: relative; top: 16px; left: var(--hero-text-shift); max-width: 640px; margin-top: 32px; }
 /* Darker than the page body text so it keeps >= 5:1 contrast over the lightly washed photo. */
 [data-hero="photo"] .biography p { margin-bottom: 20px; color: #2b362f; font-size: 17px; line-height: 1.85; }
 [data-hero="photo"] .biography p:last-child { margin-bottom: 0; }
-[data-hero="photo"] .hero-photo-cue { display: grid; }
-/* Short windows: the column already runs to the fold, and a cue there would be cut in half. */
-@media (max-height: 839px) {
-  [data-hero="photo"] .hero { padding-top: 56px; padding-bottom: 56px; }
-  [data-hero="photo"] .hero-photo-cue { display: none; }
+/* The scroll cue sits centred in the gap below the card (row 6 plus the hero's bottom padding),
+   shown only on windows tall and wide enough for that gap to hold it. */
+[data-hero="photo"] .hero-photo-cue {
+  grid-row: 6;
+  grid-column: 1 / -1;
+  justify-self: center;
+  align-self: center;
+  position: relative;
+  left: auto;
+  bottom: auto;
+  margin-bottom: calc(-1 * var(--card-gap));
+  transform: none;
+}
+@media (min-height: 1000px) and (min-width: 1100px) {
+  [data-hero="photo"] .hero-photo-cue { display: grid; }
 }
 [data-hero="photo"] .second-page { min-height: 0; }
 [data-hero="photo"] .profile-shell { padding-top: clamp(32px, 4vw, 56px); }
@@ -481,18 +513,19 @@ html.has-hero-scene { height: 100%; overflow: hidden; overscroll-behavior: none;
 [data-hero="photo"] .profile-section h2 { font-family: Georgia, "Noto Serif", serif; letter-spacing: 0; }
 @media (max-width: 900px), (max-aspect-ratio: 1/1) {
   [data-hero="photo"] .hero { --hero-text-shift: 0px; display: block; min-height: 0; padding: 0; }
+  [data-hero="photo"] .hero::before { content: none; }
   [data-hero="photo"] .hero-backdrop {
     position: relative;
     inset: auto;
     z-index: auto;
-    width: min(100% - 2 * var(--card-gutter), var(--stage-w));
+    width: min(100% - 2 * var(--card-gap), var(--stage-w));
     height: min(64svh, 120vw);
-    margin: var(--card-gutter) auto 0;
+    margin: var(--card-gap) auto 0;
   }
   /* Stacked: the photo is just covered (no shift) and placed at 4% so the person sits centred. */
   [data-hero="photo"] .hero-backdrop-photo { --bd-h: 100cqh; --shift: 0px; --offset-x: calc((var(--img-w) - var(--bd-w)) * .04); }
   [data-hero="photo"] .site-header,
-  [data-hero="photo"] .hero > .biography { max-width: 960px; margin-inline: auto; padding-inline: 32px; }
+  [data-hero="photo"] .hero > .biography { zoom: 1; max-width: 960px; margin-inline: auto; padding-inline: 32px; }
   [data-hero="photo"] .site-header { top: 0; padding-top: 20px; }
   [data-hero="photo"] .hero > .biography { top: 0; margin-top: 0; padding-top: 28px; }
   [data-hero="photo"] .hero-photo-cue { display: none; }

@@ -381,8 +381,10 @@ html.has-hero-scene { height: 100%; overflow: hidden; overscroll-behavior: none;
   display: grid;
   grid-template-columns: minmax(0, 49fr) minmax(0, 51fr) var(--text-inset);
   /* The padding rows absorb the names' 10px and the biography's 16px downward nudges, so the
-     text block still sits centred in the card. */
-  grid-template-rows: minmax(0, 1fr) calc(var(--card-pad) - 10px) auto auto calc(var(--card-pad) + 16px) minmax(0, 1fr);
+     text block sits centred in the card; with the scroll cue shown, the bottom row also holds
+     the cue (see below). */
+  --card-pad-bottom: calc(var(--card-pad) + 16px);
+  grid-template-rows: minmax(0, 1fr) calc(var(--card-pad) - 10px) auto auto var(--card-pad-bottom) minmax(0, 1fr);
   height: auto;
   min-height: 100vh;
   min-height: 100svh;
@@ -489,20 +491,26 @@ html.has-hero-scene { height: 100%; overflow: hidden; overscroll-behavior: none;
 /* Darker than the page body text so it keeps >= 5:1 contrast over the lightly washed photo. */
 [data-hero="photo"] .biography p { margin-bottom: 20px; color: #2b362f; font-size: 17px; line-height: 1.85; }
 [data-hero="photo"] .biography p:last-child { margin-bottom: 0; }
-/* The scroll cue sits centred in the gap below the card (row 6 plus the hero's bottom padding),
-   shown only on windows tall and wide enough for that gap to hold it. */
+/* The scroll cue sits inside the card, centred at its bottom (--cue-bottom above the card's
+   edge). Its row grows to hold it: the biography's 16px nudge, 20px clear space, the 48px cue
+   and the space below it. Hidden on windows under 760px tall, where the room is better spent
+   on the text. */
 [data-hero="photo"] .hero-photo-cue {
-  grid-row: 6;
+  grid-row: 5;
   grid-column: 1 / -1;
   justify-self: center;
-  align-self: center;
+  align-self: end;
   position: relative;
   left: auto;
   bottom: auto;
-  margin-bottom: calc(-1 * var(--card-gap));
+  margin-bottom: var(--cue-bottom);
   transform: none;
 }
-@media (min-height: 1000px) and (min-width: 1100px) {
+@media (min-height: 760px) {
+  [data-hero="photo"] .hero {
+    --cue-bottom: clamp(20px, 3.5svh, 36px);
+    --card-pad-bottom: calc(16px + 20px + 48px + var(--cue-bottom));
+  }
   [data-hero="photo"] .hero-photo-cue { display: grid; }
 }
 [data-hero="photo"] .second-page { min-height: 0; }

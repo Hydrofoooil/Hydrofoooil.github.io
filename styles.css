@@ -414,7 +414,7 @@ html.has-hero-scene { height: 100%; overflow: hidden; overscroll-behavior: none;
   box-shadow:
     0 0 0 1px rgb(37 53 43 / .1),
     0 3px 8px rgb(37 53 43 / .1),
-    0 20px 48px -12px rgb(37 53 43 / .34);
+    0 20px 48px -12px rgb(37 53 43 / .3);
 }
 [data-hero="photo"] .hero-backdrop-photo {
   /* Where the portrait lands: the 3:2 photo covers the card widened by --shift and is pulled

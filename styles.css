@@ -412,9 +412,9 @@ html.has-hero-scene { height: 100%; overflow: hidden; overscroll-behavior: none;
   background: #fafbf8;
   /* Hairline outline plus a soft shadow cast slightly downward, as if lit from above. */
   box-shadow:
-    0 0 0 1px rgb(37 53 43 / .08),
-    0 2px 6px rgb(37 53 43 / .06),
-    0 18px 44px -12px rgb(37 53 43 / .22);
+    0 0 0 1px rgb(37 53 43 / .1),
+    0 3px 8px rgb(37 53 43 / .1),
+    0 20px 48px -12px rgb(37 53 43 / .34);
 }
 [data-hero="photo"] .hero-backdrop-photo {
   /* Where the portrait lands: the 3:2 photo covers the card widened by --shift and is pulled

@@ -219,7 +219,8 @@ function applyForm(form) {
 }
 
 function updatePublishLabel() {
-  publishButton.textContent = draftEl.checked ? '保存草稿' : '发布';
+  if (draftEl.checked) publishButton.textContent = '保存草稿';
+  else publishButton.textContent = state.current.mode === 'existing' ? '保存修改' : '发布';
 }
 
 // ---------------------------------------------------------------- slug + language
@@ -361,6 +362,7 @@ async function buildPreviewDocument(html, slug, body) {
     output = output.replace(/<base[^>]*>/i, match => `${match}\n<style>\n${css}\n</style>`);
   }
   output = output.replace(/<link\b[^>]*rel="(?:icon|alternate)"[^>]*>\s*/gi, '');
+  output = output.replace(/<script\b[^>]*><\/script>\s*/gi, ''); // the sandboxed preview runs no scripts
   for (const [name, image] of state.pending) {
     output = output.split(`src="${name}"`).join(`src="${image.dataURL}"`);
   }
@@ -931,7 +933,8 @@ async function loadPosts({ quiet = false } = {}) {
     state.repo = repo;
     state.posts = analyzeSources(repo.sources);
     renderPostList();
-    listHint.hidden = true;
+    listHint.hidden = false;
+    listHint.textContent = state.posts.length ? '点击文章即可修改，改完点「保存修改」。' : '还没有文章，直接在右边开始写。';
     if (state.current.mode === 'new' && !state.slugTouched) {
       refreshAutoSlug();
     }
@@ -1099,6 +1102,7 @@ async function verifyToken() {
     setStatus(tokenStatus, '令牌有效，可以发布。', 'ok');
     const loaded = await loadPosts();
     if (!loaded) setStatus(tokenStatus, '令牌有效，但读取文章列表失败，请检查网络或权限。', 'error');
+    else openRequestedPost();
     return true;
   } catch (error) {
     state.verified = false;
@@ -1125,6 +1129,16 @@ function clearToken() {
   listHint.hidden = false;
   listHint.classList.remove('is-error');
   listHint.textContent = '设置并验证 GitHub 令牌后，这里会列出仓库中的文章。';
+}
+
+/** /blog/write/?edit=<slug> (the post pages' Edit link): open that post once the list is loaded. */
+function openRequestedPost() {
+  const slug = state.requestedEdit;
+  if (!slug) return;
+  state.requestedEdit = '';
+  history.replaceState(history.state, '', location.pathname);
+  if (state.repo?.sources.some(source => source.slug === slug)) openPost(slug);
+  else showToast(`找不到文章 /blog/${slug}/，可能已被删除。`);
 }
 
 // ---------------------------------------------------------------- validation
@@ -1498,6 +1512,7 @@ function bindEvents() {
 // ---------------------------------------------------------------- init
 
 async function init() {
+  state.requestedEdit = new URLSearchParams(location.search).get('edit') || '';
   dateEl.value = todayLocal();
   state.baseForm = readForm();
   setupTabs();

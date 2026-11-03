@@ -65,6 +65,8 @@ a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; border-rad
 .post-title { margin: 0; font-family: var(--serif); font-size: 40px; font-weight: 700; line-height: 1.2; letter-spacing: -.015em; }
 .post-meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; color: var(--muted); font-size: 14px; }
 .post .post-tags { margin-top: 14px; }
+.post-edit { margin-left: auto; padding: 0 10px; border-radius: 999px; background: var(--tint); color: var(--link); font-size: 13px; line-height: 1.7; text-decoration: none; }
+.post-edit:hover { background: #e2e9df; color: #1f3828; }
 
 .post-body { margin-top: 36px; padding-top: 32px; border-top: 1px solid var(--line); color: var(--body); font-size: 17px; line-height: 1.85; overflow-wrap: break-word; }
 .post-body > :first-child { margin-top: 0; }

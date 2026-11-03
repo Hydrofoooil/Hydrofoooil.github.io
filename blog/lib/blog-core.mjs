@@ -190,7 +190,7 @@ ${MARKER}
     <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
     <link rel="icon" type="image/png" href="/assets/github-avatar.png" sizes="192x192">
     <link rel="alternate" type="application/atom+xml" title="${AUTHOR} · Blog" href="/blog/feed.xml">
-    <link rel="stylesheet" href="/blog/blog.css?v=${cssVersion}">
+    <link rel="stylesheet" href="/blog/blog.css?v=${cssVersion}">${ogType === 'article' ? '\n    <script src="/blog/lib/edit-link.js" defer></script>' : ''}
   </head>
   <body>
     <header class="blog-bar">
@@ -219,7 +219,7 @@ export function renderPost(post, { cssVersion, year }) {
   const main = `      <article class="post">
         <a class="post-back" href="/blog/" lang="en">← All posts</a>
         <h1 class="post-title">${esc(post.title)}</h1>
-        <div class="post-meta" lang="en"><time datetime="${post.date}">${shownDate(post.date)}</time><span aria-hidden="true">·</span><span>${post.minutes} min read</span></div>
+        <div class="post-meta" lang="en"><time datetime="${post.date}">${shownDate(post.date)}</time><span aria-hidden="true">·</span><span>${post.minutes} min read</span><a class="post-edit" href="/blog/write/?edit=${post.slug}" hidden>✎ Edit</a></div>
         ${tagList(post.tags)}
         <div class="post-body">
 ${post.body}

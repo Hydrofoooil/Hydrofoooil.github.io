@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; connect-src 'self' https://api.github.com; img-src 'self' data: blob: https:; style-src 'self' 'unsafe-inline'; font-src 'self'; base-uri 'self'; form-action 'none'">
+    <title>写博客 · Ting Mao</title>
+    <meta name="theme-color" content="#fafbf8">
+    <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+    <link rel="icon" type="image/png" href="/assets/github-avatar.png" sizes="192x192">
+    <link rel="stylesheet" href="./editor.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-left">
+        <a class="brand" href="/blog/">← 博客</a>
+        <h1 class="app-title">写博客</h1>
+        <span id="autosave-note" class="autosave-note" aria-live="polite"></span>
+      </div>
+      <button type="button" id="settings-toggle" class="button ghost" aria-expanded="false" aria-controls="settings">设置</button>
+    </header>
+
+    <main class="workspace">
+      <aside class="sidebar" aria-label="文章列表与设置">
+        <section id="settings" class="settings" hidden>
+          <h2 class="side-title">GitHub 设置</h2>
+          <p class="hint">令牌只保存在此浏览器中，并且只发送给 api.github.com。</p>
+          <label class="field">
+            <span class="label">Fine-grained personal access token</span>
+            <input id="token-input" type="password" autocomplete="off" spellcheck="false" placeholder="github_pat_…">
+          </label>
+          <label class="checkline">
+            <input id="remember-token" type="checkbox">
+            <span>在此设备上记住</span>
+          </label>
+          <div class="button-row">
+            <button type="button" id="verify-token" class="button primary small">验证</button>
+            <button type="button" id="clear-token" class="button ghost small">清除</button>
+          </div>
+          <p id="token-status" class="status" aria-live="polite"></p>
+          <details class="token-help">
+            <summary>如何创建令牌</summary>
+            <ol>
+              <li>打开 <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener noreferrer">GitHub 新建令牌页面</a>。</li>
+              <li>Repository access → Only select repositories → 选择 <strong>Hydrofoooil.github.io</strong>。</li>
+              <li>Permissions → Contents: <strong>Read and write</strong>。</li>
+              <li>选择一个过期时间，生成后粘贴到上方。</li>
+            </ol>
+            <p>令牌只保存在此浏览器中，不会上传到别处。</p>
+          </details>
+        </section>
+
+        <div class="list-head">
+          <h2 class="side-title">文章</h2>
+          <button type="button" id="new-post" class="button ghost small">新文章</button>
+        </div>
+        <p id="list-hint" class="hint">设置并验证 GitHub 令牌后，这里会列出仓库中的文章。</p>
+        <ol id="post-list" class="post-list"></ol>
+      </aside>
+
+      <div class="mobile-tabs" role="tablist" aria-label="编辑与预览">
+        <button type="button" class="tab is-active" role="tab" aria-selected="true" data-tab="edit" id="tab-edit">编辑</button>
+        <button type="button" class="tab" role="tab" aria-selected="false" data-tab="preview" id="tab-preview">预览</button>
+      </div>
+
+      <section class="editor-pane" aria-label="编辑">
+        <div id="restore-banner" class="restore-banner" hidden>
+          <p id="restore-text">发现未发布的自动保存。</p>
+          <div class="button-row">
+            <button type="button" id="restore-accept" class="button primary small">恢复未发布的修改</button>
+            <button type="button" id="restore-discard" class="button ghost small">放弃</button>
+          </div>
+        </div>
+
+        <form id="post-form" class="post-form" novalidate>
+          <div class="form-grid">
+            <label class="field span-2">
+              <span class="label">标题</span>
+              <input id="post-title" type="text" autocomplete="off" placeholder="文章标题">
+            </label>
+
+            <label class="field">
+              <span class="label">网址</span>
+              <span class="slug-wrap">
+                <span class="slug-prefix">/blog/</span>
+                <input id="post-slug" type="text" autocomplete="off" spellcheck="false" placeholder="my-post">
+                <span class="slug-suffix">/</span>
+              </span>
+              <span id="slug-note" class="field-note"></span>
+            </label>
+
+            <label class="field">
+              <span class="label">日期</span>
+              <input id="post-date" type="date">
+            </label>
+
+            <label class="field">
+              <span class="label">标签（用逗号分隔）</span>
+              <input id="post-tags" type="text" autocomplete="off" placeholder="robotics, notes">
+            </label>
+
+            <label class="field">
+              <span class="label">语言</span>
+              <select id="post-lang">
+                <option value="en">English</option>
+                <option value="zh-CN">中文</option>
+              </select>
+            </label>
+
+            <label class="field span-2">
+              <span class="label">摘要（可选，留空自动取第一段）</span>
+              <input id="post-summary" type="text" autocomplete="off">
+            </label>
+          </div>
+
+          <label class="checkline draft-line">
+            <input id="post-draft" type="checkbox">
+            <span>草稿（不发布到文章列表）</span>
+          </label>
+
+          <div class="body-head">
+            <span class="label">正文（Markdown）</span>
+            <div class="body-tools">
+              <button type="button" id="insert-image" class="button ghost small">插入图片</button>
+              <span class="hint">可直接粘贴或拖入图片 / 富文本</span>
+              <input id="image-input" type="file" accept="image/*" multiple hidden>
+            </div>
+          </div>
+          <textarea id="post-body" class="body-input" spellcheck="false" placeholder="在这里写 Markdown……"></textarea>
+
+          <div class="actions">
+            <button type="submit" id="publish-button" class="button primary">发布</button>
+            <button type="button" id="delete-button" class="button danger" hidden>删除文章</button>
+            <span id="publish-status" class="status" aria-live="polite"></span>
+          </div>
+          <p id="form-error" class="form-error" role="alert" hidden></p>
+        </form>
+      </section>
+
+      <section class="preview-pane" aria-label="预览">
+        <div class="preview-head">
+          <span class="label">预览</span>
+          <span id="preview-note" class="hint">实时渲染</span>
+        </div>
+        <iframe id="preview" class="preview-frame" sandbox title="文章预览"></iframe>
+      </section>
+    </main>
+
+    <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+    <script type="module" src="./editor.js"></script>
+  </body>
+</html>

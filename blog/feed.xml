@@ -11,7 +11,7 @@
     <link href="https://hydrofoooil.github.io/blog/embodied-brains/"/>
     <id>https://hydrofoooil.github.io/blog/embodied-brains/</id>
     <updated>2026-11-03T00:00:00Z</updated>
-    <summary>1、从human-like的角度来看wam不如jepa，因为wam靠预测未来的画面来产生action（现在更多是预测未来状态的latent而不是pixel，但是训练时对prediction本身的监督信号还是来自于将predicted latent解码成pixel，然后和gt label计算pixel层面的loss），但是人类执行action的时候是不需…</summary>
+    <summary>表征的问题/HOI数据管线的问题/关于大小脑架构/CAP与skill是合理的解决方案吗</summary>
     <content type="html">&lt;h2&gt;表征的问题&lt;/h2&gt;
 &lt;p&gt;1、从human-like的角度来看wam不如jepa，因为wam靠预测未来的画面来产生action（现在更多是预测未来状态的latent而不是pixel，但是训练时对prediction本身的监督信号还是来自于将predicted latent解码成pixel，然后和gt label计算pixel层面的loss），但是人类执行action的时候是不需要image 未来是怎么样的。但是jepa本身也有表征坍塌的问题（这是什么还是没怎么懂）&lt;/p&gt;
 &lt;h2&gt;HOI数据管线的问题&lt;/h2&gt;
@@ -54,7 +54,7 @@
 &lt;li&gt;写单行code：&lt;code&gt;agent.tool.call(pi05)&lt;/code&gt;，这个算cap吗？我觉得其实很模糊&lt;/li&gt;
 &lt;li&gt;cap本质上的问题就是他用代码来显示地表示运动，我看着代码就知道eef会怎么动，这种对运动的建模过于具有可解释性了。人都是“我觉得应该这么动就这么动了”凭本能去动的。这里有两个问题：
 1、code过于确定，难以建模概率，过于确定意味着不泛化。不同的任务写不同的code，遇到新任务就需要重新写一套新的code。
-2、出action前先写code，相当于先把运动用语言解释了一遍，那就慢了。推理频率跟不上。但是这个不同的人有不同的观点，有的人认为随着大模型能力的增长，写出来的code会越来越能够zero shot任务成功，以及会越来越快。、&lt;/li&gt;
+2、出action前先写code，相当于先把运动用语言解释了一遍，那就慢了。推理频率跟不上。但是这个不同的人有不同的观点，有的人认为随着大模型能力的增长，写出来的code会越来越能够zero shot任务成功，以及会越来越快。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;9、现在把操作经验沉淀成skill的形式合理吗？&lt;/p&gt;
 &lt;ul&gt;

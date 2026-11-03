@@ -27,7 +27,16 @@
     </header>
     <main class="blog-main">
       <h1 class="blog-title">Blog</h1>
-      <p class="blog-empty">No posts yet. Check back soon.</p>
+      <ol class="post-list" reversed>
+        <li class="post-item" lang="zh-CN">
+          <time class="post-item-date" datetime="2026-11-03" lang="en">2026.11.03</time>
+          <div class="post-item-text">
+            <h2><a href="/blog/embodied-brains/">具身大小脑</a></h2>
+            <p>1、从human-like的角度来看wam不如jepa，因为wam靠预测未来的画面来产生action（现在更多是预测未来状态的latent而不是pixel，但是训练时对prediction本身的监督信号还是来自于将predicted latent解码成pixel，然后和gt label计算pixel层面的loss），但是人类执行action的时候是不需…</p>
+            
+          </div>
+        </li>
+      </ol>
     </main>
     <footer class="blog-footer" lang="en">© 2026 Ting Mao · <a href="/blog/feed.xml">Atom feed</a></footer>
   </body>

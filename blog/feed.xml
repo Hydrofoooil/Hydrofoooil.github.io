@@ -6,4 +6,61 @@
   <id>https://hydrofoooil.github.io/blog/</id>
   <updated>2026-11-03T00:00:00Z</updated>
   <author><name>Ting Mao</name></author>
+  <entry>
+    <title>具身大小脑</title>
+    <link href="https://hydrofoooil.github.io/blog/embodied-brains/"/>
+    <id>https://hydrofoooil.github.io/blog/embodied-brains/</id>
+    <updated>2026-11-03T00:00:00Z</updated>
+    <summary>1、从human-like的角度来看wam不如jepa，因为wam靠预测未来的画面来产生action（现在更多是预测未来状态的latent而不是pixel，但是训练时对prediction本身的监督信号还是来自于将predicted latent解码成pixel，然后和gt label计算pixel层面的loss），但是人类执行action的时候是不需…</summary>
+    <content type="html">&lt;h2&gt;表征的问题&lt;/h2&gt;
+&lt;p&gt;1、从human-like的角度来看wam不如jepa，因为wam靠预测未来的画面来产生action（现在更多是预测未来状态的latent而不是pixel，但是训练时对prediction本身的监督信号还是来自于将predicted latent解码成pixel，然后和gt label计算pixel层面的loss），但是人类执行action的时候是不需要image 未来是怎么样的。但是jepa本身也有表征坍塌的问题（这是什么还是没怎么懂）&lt;/p&gt;
+&lt;h2&gt;HOI数据管线的问题&lt;/h2&gt;
+&lt;p&gt;2、video based human2robot HOI的难点在于他需要先验，需要世界知识。因为pipeline本身需要从pixel里面读懂手和物体是怎么交互的，才能将他有效地转换成物理可行的手物轨迹。（有先验相当于在探索空间里有guidance，减少探索成本，完全没有先验的话那就相当于纯均匀采样，一个一个试）那么这个先验从哪里来呢？&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;一种是利用视觉模型，比如moge、vggt、sam3d等等，他们速度快，但是提供的先验弱（只能提供几何信息而不能理解交互），因此快但是容易出错。&lt;/li&gt;
+&lt;li&gt;另一种是利用astra这种agent，他们提供的先验很强（理解几何，理解交互），但是slow and costly。比如让astra去逐帧、逐根手指、逐个关节去调，那总能调出来正确的手物交互构型的，就是实在是太慢太慢了。（也许随着大模型变强，会变的越来越快和便宜。但是无论如何重点还是在于让他少输出多思考，需要他的few shot或者zero shot能力）
+所以这里就是一个顾此失彼的问题，强先验和高效率如何兼得。这个太难了，真做出一套从任意video里高效恢复出物理可行的手物轨迹的话，那所有数采都失业了，那互联网规模的具身data就直接实现了hhh。所以感觉这个需要大厂来用很多的资源砸下去来做。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;关于大小脑架构&lt;/h2&gt;
+&lt;p&gt;3、大小脑推理频率这个事情。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;我觉得小脑不需要海量交互数据来给他注入某些世界知识或者先验，但是他需要保有某些交互的本能，需要以足够快的频率进行推理。这里有一点就是，大脑的频率也不能太慢。比如大脑的频率是0.1hz，就是10s一次推理，那他就是用10s以前的决策来应对10s之后的世界。这样对于高动态的现实世界来说是不行的，这里的空白可能就需要小脑来填补。大脑单次推理越慢，意味着小脑接收到一次指令后需要持续工作的时间就越长，也就意味着小脑在这期间面对的变数就越多，也就意味着小脑处理起来需要的先验越多，他也就越像大脑。&lt;/li&gt;
+&lt;li&gt;现在最主要的问题还是在于我们沿用了大模型在数字世界中运行的模式来应对现实世界。他们的区别在于推理频率在数字世界中不重要，因为数字世界是静态的，模型不输出，周围的文件就不会发生变化，周围的环境会等着你给结果，5秒前的决策适用于5秒后的环境。现实世界是高动态的。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;4、大小脑形式：现在有的就有10多种形式。比如？&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;pi05自己就是vlm（低频大脑）+ action expert（高频小脑）&lt;/li&gt;
+&lt;li&gt;现在的gpt+pi05架构，gpt是大脑，pi05是小脑&lt;/li&gt;
+&lt;li&gt;现在的whole-body vla + sonic的架构，前者vla是大脑，后者tracker是小脑
+但是manipulation的小脑和humanoid的小脑又不一样。humanoid的小脑可以很简单，就是一个tracker，因为他相当于只需要与地面和重力交互。小脑是tracker的话他的大脑需要直接输出action。而manipulation的小脑需要和环境、物体交互，那么他就需要也具备一些对环境和物体的理解。
+其实最具身的应该还是像人脑一样集感知、推理、运控于一体的。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;感觉最简单的大小脑结构应该是这样的：
+&lt;img src=&quot;image-1.webp&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;5、大小脑接口&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;涉及到语义的就需要大脑，涉及到运动的就需要小脑？&lt;/li&gt;
+&lt;li&gt;现在的接口就是cap&lt;/li&gt;
+&lt;li&gt;这个合理的接口是怎样的呢？我觉得应该是大脑能隐式地向小脑传递动作意图，然后小脑去实现动作。比如我觉得pi里的action expert去attend VLM，就有点这种意思。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;CAP与skill是正确的解决方案吗&lt;/h2&gt;
+&lt;p&gt;6、CAP是当前阶段的合理方案，但长期来看他只是权宜之计，不是最终的solution。
+7、CAP相对合理的地方：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;当前的阶段是任何只要涉及到datadriven的事情就会遇到数据严重不均衡的问题，因此现在的VLM也好WAM也好只要微调就会破坏掉他先前的能力。（比如让VLM去完成某个task，都是给他100条这个task的示范然后尽可能让他理解这些示范背后的语义，然后别的任务就完不成了）而CAP的话首先他不需要微调，因此他不会破坏astra任何模型的能力。&lt;/li&gt;
+&lt;li&gt;其次现在gpt等基模在后训练里着重提升的能力就是coding，所以cap是最能够发挥大模型能力优势的方法。&lt;/li&gt;
+&lt;li&gt;他是目前能想到的唯一一种能让手头上现有的工具（VLA，WAM，grasp synthesis，motion planning，等等）都派上用场的接口。
+8、CAP的问题：&lt;/li&gt;
+&lt;li&gt;写单行code：&lt;code&gt;agent.tool.call(pi05)&lt;/code&gt;，这个算cap吗？我觉得其实很模糊&lt;/li&gt;
+&lt;li&gt;cap本质上的问题就是他用代码来显示地表示运动，我看着代码就知道eef会怎么动，这种对运动的建模过于具有可解释性了。人都是“我觉得应该这么动就这么动了”凭本能去动的。这里有两个问题：
+1、code过于确定，难以建模概率，过于确定意味着不泛化。不同的任务写不同的code，遇到新任务就需要重新写一套新的code。
+2、出action前先写code，相当于先把运动用语言解释了一遍，那就慢了。推理频率跟不上。但是这个不同的人有不同的观点，有的人认为随着大模型能力的增长，写出来的code会越来越能够zero shot任务成功，以及会越来越快。、&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;9、现在把操作经验沉淀成skill的形式合理吗？&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;skill的问题：他的本质就是把同类的操作都归纳成了SOP。之后如果有新的任务落入了skill所属的范畴，他就要求模型照着这个SOP来。但是对人而言我做动作根本不需要sop。（SOP这个东西对于复杂任务来说是没问题的。但是现在模型struggle on的还是日常交互这些，都是人类儿童时期就学会的简单任务）&lt;/li&gt;
+&lt;li&gt;本质还是在于我们沿用了大模型处理hard task（比如做网页、读论文、写代码等需要skill，这种无论对模型还是人来说都是hard task，用skill也就是sop没毛病）时的workflow，来让他执行现实世界中的简单任务。也就是说，在physical的任务中使用digital的工作模式，这种mismatch就显得生搬硬套，导致用skill来操作显得简单事情复杂化。&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+  </entry>
 </feed>

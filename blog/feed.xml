@@ -6,4 +6,16 @@
   <id>https://hydrofoooil.github.io/blog/</id>
   <updated>2026-11-03T00:00:00Z</updated>
   <author><name>Ting Mao</name></author>
+  <entry>
+    <title>Editor smoke test</title>
+    <link href="https://hydrofoooil.github.io/blog/zz-editor-smoke/"/>
+    <id>https://hydrofoooil.github.io/blog/zz-editor-smoke/</id>
+    <updated>2026-11-03T00:00:00Z</updated>
+    <summary>This temporary post checks the online editor end to end.</summary>
+    <content type="html">&lt;p&gt;This temporary post checks the online editor end to end.&lt;/p&gt;
+&lt;h2&gt;Section&lt;/h2&gt;
+&lt;p&gt;It will be deleted right away.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;image-1.webp&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+</content>
+  </entry>
 </feed>
